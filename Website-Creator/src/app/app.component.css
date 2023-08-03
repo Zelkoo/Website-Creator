@@ -14,13 +14,13 @@ button {
   position: absolute;
   width: 100%;
 }
-h1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  margin: 0 auto;
-}
+/*h1 {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  flex: 1;*/
+/*  margin: 0 auto;*/
+/*}*/
 
 .manipulator.one {
   position: absolute;
@@ -70,11 +70,13 @@ h1 {
 }
 
 mat-slider {
-  position: absolute;
-  top: 50px;
-  left: 250px;
+  position: relative;
+  top: 15px;
 }
-
+.fontsize {
+  position: relative;
+  top: 42px;
+}
 .button-wrapper {
   position: relative;
   display: inline-block;

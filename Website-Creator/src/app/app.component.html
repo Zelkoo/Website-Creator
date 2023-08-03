@@ -20,7 +20,7 @@
 
 </div>
 <div >
-  <label for="button-text-input">Edytuj tekst przycisku</label>
+  <label for="button-text-input">Edit button text</label>
   <input
     type="text"
     id="button-text-input"
@@ -30,12 +30,13 @@
 </div>
 
 <button (click)="onCreateNewButton()">Create New Button</button>
-<mat-slider min="10" max="100" step="1" discrete  (change)="updateButtonFontSize($event)">
-  <input matSliderThumb>
-</mat-slider>
-<section class="example-section">
-  <mat-checkbox  class="example-margin" [(ngModel)]="isChecked" (change)="changeBg()">Check me!</mat-checkbox>
-</section>
+<h1 class="fontsize">Font Size</h1>
+<div class="slider">
+  <mat-slider min="10" max="100" step="1" discrete  (change)="updateButtonFontSize($event)">
+    <input matSliderThumb>
+  </mat-slider>
+
+</div>
 
 <div class="colorPaletteContainer">
   <h1>bg color</h1>

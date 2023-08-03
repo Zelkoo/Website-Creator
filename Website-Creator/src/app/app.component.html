@@ -1,0 +1,49 @@
+<div class="button-wrapper" *ngFor="let button of buttons; let i = index" (click)="onEdit($event, button.id)">
+  <button
+    [attr.id]="'button-' + button.id"
+    class="button123"
+    [ngClass]="{'res': isEditMode}"
+    [ngStyle]="button.style"
+    [style.background]="button.style.background"
+    [style.font-size.px]="button.style.fontSize"
+    appMoveManipulator
+    [style.left.px]="button.style.left"
+    [style.top.px]="button.style.top"
+    mwlResizable
+    [validateResize]="validate"
+    [enableGhostResize]="true"
+    [resizeSnapGrid]="{ left: 1, right: 1 }"
+    (resizeEnd)="onResizeEnd($event, i)"
+  >
+    <resize></resize>
+    <span>{{ button.text || 'Button Primary' }}  </span></button>
+
+</div>
+<div >
+  <label for="button-text-input">Edytuj tekst przycisku</label>
+  <input
+    type="text"
+    id="button-text-input"
+    [(ngModel)]="lastEditedButtonText"
+    (ngModelChange)="updateButtonText()"
+  />
+</div>
+
+<button (click)="onCreateNewButton()">Create New Button</button>
+<mat-slider min="10" max="100" step="1" discrete  (change)="updateButtonFontSize($event)">
+  <input matSliderThumb>
+</mat-slider>
+<section class="example-section">
+  <mat-checkbox  class="example-margin" [(ngModel)]="isChecked" (change)="changeBg()">Check me!</mat-checkbox>
+</section>
+
+<div class="colorPaletteContainer">
+  <h1>bg color</h1>
+  <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"
+        [cpCancelButton]="true" [(colorPicker)]="arrayColors[selectedColor]" (colorPickerChange)="changeBg()"></span>
+</div>
+<div class="colorPaletteContainer">
+  <h1>font color</h1>
+  <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"
+        [cpCancelButton]="true" [(colorPicker)]="arrayColors[selectedColor]" (colorPickerChange)="changeFont()"></span>
+</div>

@@ -1,10 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ResizeEvent} from "angular-resizable-element";
 import { Store} from "@ngrx/store";
 import * as ButtonEditorActions from '../store/button-editor.actions';
-
 import {Button, ButtonEditorState} from "../store/button-editor.state";
-import {Subscription} from "rxjs";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

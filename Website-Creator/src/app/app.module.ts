@@ -17,7 +17,6 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {ButtonEditorEffects} from "../store/button-editor.effects";
 import {EffectsModule} from "@ngrx/effects";
 import {MatInputModule} from "@angular/material/input";
-import {NgxColorsModule} from "ngx-colors";
 import {ColorPickerModule} from "ngx-color-picker";
 
 @NgModule({

@@ -40,13 +40,12 @@ export class ResizeManipulatorDirective {
       this.originalMouseX = event.clientX;
       this.originalMouseY = event.clientY;
     } else {
-      console.log(2)
       this.isDragging = true;
       this.originalMouseX = event.clientX - this.elementRef.nativeElement.offsetLeft;
       this.originalMouseY = event.clientY - this.elementRef.nativeElement.offsetTop;
     }
   }
-// document:mousemove blokuje slider
+// Mousemove block Angular Material Slider animation
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
     event.preventDefault();

@@ -1,15 +1,19 @@
-import {Component} from '@angular/core';
-import {ResizeEvent} from "angular-resizable-element";
-import { Store} from "@ngrx/store";
+import {Component, Input, OnInit} from '@angular/core';
+import {Store} from "@ngrx/store";
 import * as ButtonEditorActions from '../store/button-editor.actions';
 import {Button, ButtonEditorState} from "../store/button-editor.state";
+import {InteractHandlerService} from "./services/interact-handler";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent{
+export class AppComponent implements OnInit {
+  @Input()
+  model: any;
+  @Input()
+  options: any;
   isEditMode = true;
   buttons: any[] = [];
   nextButtonId = 1;
@@ -17,10 +21,9 @@ export class AppComponent{
   lastEditedButtonText: string = '';
   style: object = {};
   fontSize: number = 16
-  isChecked: boolean = false;
   color: string = '#2889e9'
   background: string = '';
-  fontColor: string = ''
+
   arrayColors: Record<string, string> = {
     color1: '#2883e9',
     color2: '#e920e9',
@@ -28,34 +31,14 @@ export class AppComponent{
     color4: 'rgb(236,64,64)',
     color5: 'rgba(45,208,45,1)'
   };
-  selectedColor: string = 'color1';
-  constructor(private store: Store<ButtonEditorState>) {}
 
-  public validate(event: ResizeEvent): boolean {
-    const MIN_DIMENSIONS_PX: number = 50;
-    if (
-      event.rectangle.width &&
-      event.rectangle.height &&
-      (event.rectangle.width < MIN_DIMENSIONS_PX ||
-        event.rectangle.height < MIN_DIMENSIONS_PX)
-    ) {
-      return false;
-    }
-    return true;
+  selectedColor: string = 'color1';
+
+  constructor(private store: Store<ButtonEditorState>, private interactHandler: InteractHandlerService) {
   }
-  public onResizeEnd(event: ResizeEvent, buttonIndex: number): void {
-    const style = {
-      position: 'fixed',
-      left: `${event.rectangle.left}px`,
-      top: `${event.rectangle.top}px`,
-      width: `${event.rectangle.width}px`,
-      height: `${event.rectangle.height}px`,
-      fontSize: `${this.fontSize.toString()}px`,
-      background: this.background,
-      color: this.fontColor
-    };
-    this.buttons[buttonIndex].style = style;
-    this.store.dispatch(ButtonEditorActions.updateButtonStyle({ buttonIndex, style }));
+
+  public ngOnInit() {
+    this.interactHandler.setupResizableAndDraggable('.resizable-draggable');
   }
 
   onEdit($event: any, buttonId: number | null) {
@@ -98,11 +81,11 @@ export class AppComponent{
       text: ''
     });
 
-    this.store.dispatch(ButtonEditorActions.addNewButton({ button: newButton }));
-
+    this.store.dispatch(ButtonEditorActions.addNewButton({button: newButton}));
 
 
   }
+
   public updateButtonText() {
     if (this.lastEditedButtonId !== null) {
       const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
@@ -111,44 +94,20 @@ export class AppComponent{
       }
     }
   }
-  public changeBg(): any {
-    if (this.lastEditedButtonId !== null) {
-      const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
-      if (editedButton) {
-        const updatedStyle = {
-          ...editedButton.style,
-          background: this.arrayColors[this.selectedColor],
-        };
-        editedButton.style = updatedStyle;
-        this.store.dispatch(ButtonEditorActions.updateButtonStyle({ buttonIndex: this.lastEditedButtonId, style: editedButton.style }))
-      }
-    }
-  }
-  public changeFont(): any {
-    if (this.lastEditedButtonId !== null) {
-      const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
-      if (editedButton) {
-        const updatedStyle = {
-          ...editedButton.style,
-          color: this.arrayColors[this.selectedColor],
-        };
-        editedButton.style = updatedStyle;
-        this.store.dispatch(ButtonEditorActions.updateButtonStyle({ buttonIndex: this.lastEditedButtonId, style: editedButton.style }))
-      }
-    }
-  }
-  public updateButtonFontSize(event: any) {
-    const value = event.target.value;
-    if (this.lastEditedButtonId !== null) {
-      const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
-      if (editedButton) {
-        const updatedStyle = {
-          ...editedButton.style,
-          fontSize: value + 'px',
-        };
-        editedButton.style = updatedStyle;
-        this.store.dispatch(ButtonEditorActions.updateButtonStyle({ buttonIndex: this.lastEditedButtonId, style: editedButton.style })); // Aktualizacja akcją w Redux Store
 
+  public changeStyle(): any {
+    if (this.lastEditedButtonId !== null) {
+      const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
+      if (editedButton) {
+        const updatedStyle = {
+          ...editedButton.style,
+          background: this.arrayColors[this.selectedColor]
+        };
+        editedButton.style = updatedStyle;
+        this.store.dispatch(ButtonEditorActions.updateButtonStyle({
+          buttonIndex: this.lastEditedButtonId,
+          style: editedButton.style
+        }))
       }
     }
   }

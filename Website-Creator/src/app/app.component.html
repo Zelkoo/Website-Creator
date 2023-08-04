@@ -12,9 +12,6 @@
     <span>{{ button.text || 'Button Primary' }}  </span></button>
 
 </div>
-<div class="resizable">
-  <p> Resize from any edge or corner </p>
-</div>
 <div >
   <label for="button-text-input">Edit button text</label>
   <input
@@ -26,17 +23,9 @@
 </div>
 
 <button (click)="onCreateNewButton()">Create New Button</button>
-<h1 class="fontsize">Font Size</h1>
-<div class="slider">
-<!--  <mat-slider min="10" max="100" step="1" discrete  (change)="updateButtonFontSize($event)">-->
-<!--    <input matSliderThumb>-->
-<!--  </mat-slider>-->
-
-</div>
 
 <div class="colorPaletteContainer">
   <h1>bg color</h1>
   <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"
         [cpCancelButton]="true" [(colorPicker)]="arrayColors[selectedColor]" (colorPickerChange)="changeStyle()"></span>
 </div>
-<button class="button is-warning">dsadsadsadsa</button>

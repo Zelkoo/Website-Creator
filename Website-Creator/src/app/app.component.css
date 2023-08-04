@@ -143,3 +143,7 @@ button span {
 .rotate {
   transform: rotate(180deg);
 }
+.colorPaletteContainer {
+  position: relative;
+  top: 50px;
+}

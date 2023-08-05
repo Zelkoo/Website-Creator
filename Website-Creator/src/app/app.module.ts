@@ -18,14 +18,28 @@ import {ButtonEditorEffects} from "../store/button-editor.effects";
 import {EffectsModule} from "@ngrx/effects";
 import {MatInputModule} from "@angular/material/input";
 import {ColorPickerModule} from "ngx-color-picker";
-
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import {RouterModule, Routes} from "@angular/router";
+import {LoginComponent} from "./login/login.component";
+import {RegistrationComponent} from "./registration/registration.component";
+import {CreatorComponent} from "./creator/creator.component";
+const routes: Routes = [
+  { path: '', component: LoginComponent},
+  { path: 'edit', component: CreatorComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'registration', component: RegistrationComponent }
+];
 @NgModule({
   declarations: [
     AppComponent,
     ResizeManipulatorDirective,
     MoveManipulatorDirective,
     ResizeComponent,
-
+    LoginComponent,
+    CreatorComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -35,19 +49,23 @@ import {ColorPickerModule} from "ngx-color-picker";
     ResizableModule,
     MatSliderModule,
     MatCheckboxModule,
+    RouterModule.forRoot(routes),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     StoreModule.forRoot({buttonEditor: buttonEditorReducer}),
     EffectsModule.forRoot([ButtonEditorEffects]),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: !isDevMode(), // Restrict extension to log-only mode
-      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-      trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
-      traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      autoPause: true,
+      trace: false,
+      traceLimit: 75,
     }),
     MatInputModule,
     ColorPickerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }

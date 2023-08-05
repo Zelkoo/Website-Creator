@@ -1,0 +1,29 @@
+<div class="login-form-container">
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="email" placeholder="Email" [(ngModel)]="email">
+      <span class="icon is-small is-left">
+<i class="fas fa-envelope"></i>
+  </span>
+      <span class="icon is-small is-right">
+<i class="fas fa-check"></i>
+  </span>
+    </p>
+    <p class="control has-icons-left">
+      <input class="input" type="password" placeholder="Password" [(ngModel)]="password">
+      <span class="icon is-small is-left">
+<i class="fas fa-lock"></i>
+  </span>
+    </p>
+  </div>
+  <div class="create-account" *ngIf="!isInValid">
+    <p>New to WebCreator ? <a routerLink="#" (click)="navigateToRegister()">Let's get started</a> </p>
+  </div>
+  <div class="login-button-submit">
+    <p class="control">
+      <button class="button is-success" (click)="loginUser()">
+        Login
+      </button>
+    </p>
+  </div>
+</div>

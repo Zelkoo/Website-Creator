@@ -1,0 +1,31 @@
+<div class="button-wrapper" *ngFor="let button of buttons; let i = index" (click)="onEdit($event, button.id)">
+  <button
+    [attr.id]="'button-' + button.id"
+    class="button is-warning resizable-draggable"
+    [ngClass]="{'res': isEditMode}"
+    [ngStyle]="button.style"
+    [style.background]="button.style.background"
+    [style.font-size.px]="button.style.fontSize"
+    [style.left.px]="button.style.left"
+    [style.top.px]="button.style.top"
+  >
+    <span>{{ button.text || 'Button Primary' }}  </span></button>
+
+</div>
+<div >
+  <label for="button-text-input">Edit button text</label>
+  <input
+    type="text"
+    id="button-text-input"
+    [(ngModel)]="lastEditedButtonText"
+    (ngModelChange)="updateButtonText()"
+  />
+</div>
+
+<button (click)="onCreateNewButton()">Create New Button</button>
+
+<div class="colorPaletteContainer">
+  <h1>bg color</h1>
+  <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"
+        [cpCancelButton]="true" [(colorPicker)]="arrayColors[selectedColor]" (colorPickerChange)="changeStyle()"></span>
+</div>

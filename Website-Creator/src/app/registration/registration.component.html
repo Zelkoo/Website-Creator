@@ -1,0 +1,27 @@
+<div class="registre-form-container">
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="email" placeholder="Email" [(ngModel)]="email">
+      <span class="icon is-small is-left">
+<i class="fas fa-envelope"></i>
+  </span>
+      <span class="icon is-small is-right">
+<i class="fas fa-check"></i>
+  </span>
+      <span class="alert-invalid-mail" *ngIf="emailIsInvalid">Please provide correct email address.</span>
+    </p>
+    <p class="control has-icons-left">
+      <input class="input" type="password" placeholder="Password" [(ngModel)]="password">
+      <span class="icon is-small is-left">
+<i class="fas fa-lock"></i>
+  </span>
+    </p>
+  </div>
+  <div class="registre-button-submit">
+    <p class="control">
+      <button class="button is-success" (click)="addUser()">
+        Create Account
+      </button>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 0;
+  gap: 50px;
+  position: absolute;
+  background-color: palevioletred;
+  z-index: 5;
+}
+
+.h1-container h1 {
+  position: absolute;
+  width: 100%;
+}
+
+.resize-drag {
+  width: 120px;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 1rem;
+  background-color: #29e;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;
+
+  touch-action: none;
+
+  /* This makes things *much* easier */
+  box-sizing: border-box;
+}
+.manipulator.one {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  top: -5px;
+  left: -5px;
+  border-radius: 50%;
+
+  cursor: nwse-resize;
+}
+
+.manipulator.two {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  top: -5px;
+  right: -5px;
+  border-radius: 50%;
+
+  cursor: nesw-resize;
+}
+
+.manipulator.three {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  bottom: -5px;
+  right: -5px;
+  border-radius: 50%;
+
+  cursor: nwse-resize;
+}
+
+.manipulator.four {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+mat-slider {
+  position: relative;
+  top: 15px;
+}
+.fontsize {
+  position: relative;
+  top: 42px;
+}
+.button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.button123 {
+  position: relative;
+  z-index: 1;
+  left: 150px;
+  top: 200px
+}
+button span {
+  position: absolute;
+}
+.example-section{
+  position: relative;
+  left: 142px;
+}
+.ben {
+  position: absolute;
+  left: 500px;
+  top: 500px;
+}
+.tap-target {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 16em;
+  height: 16em;
+  padding: 1em;
+  margin: 1rem auto;
+  box-sizing: border-box;
+
+  border-radius: 100%;
+
+  font-size: 1.125em;
+  text-align: center;
+  color: #fff;
+  background-color: #29e;
+
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+
+  transition: all 0.3s;
+}
+
+.tap-target.switch-bg {
+  background-color: #f40;
+}
+
+.tap-target.large {
+  transform: scale(1.25);
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+.colorPaletteContainer {
+  position: relative;
+  top: 50px;
+}

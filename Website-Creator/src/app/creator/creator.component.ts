@@ -53,20 +53,7 @@ export class CreatorComponent implements OnInit {
     if (buttonId) {
       return;
     }
-    const newButton: Button = {
-      id: this.nextButtonId++,
-      style: {
-        position: 'fixed',
-        left: '0',
-        top: '0',
-        width: '100px',
-        height: '50px',
-        fontSize: '',
-        background: '',
-        color: ''
-      },
-      text: '',
-    };
+
     this.buttons.push({
       id: this.nextButtonId++,
       style: {
@@ -81,15 +68,8 @@ export class CreatorComponent implements OnInit {
       },
       text: ''
     });
-
-    this.store.dispatch(ButtonEditorActions.addNewButton({button: newButton}));
-
-
   }
-  public isEmailValid(email: string): boolean {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
-  }
+
   public updateButtonText() {
     if (this.lastEditedButtonId !== null) {
       const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
@@ -103,15 +83,10 @@ export class CreatorComponent implements OnInit {
     if (this.lastEditedButtonId !== null) {
       const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
       if (editedButton) {
-        const updatedStyle = {
+        editedButton.style = {
           ...editedButton.style,
-          background: this.arrayColors[this.selectedColor]
+          background: this.arrayColors[this.selectedColor],
         };
-        editedButton.style = updatedStyle;
-        this.store.dispatch(ButtonEditorActions.updateButtonStyle({
-          buttonIndex: this.lastEditedButtonId,
-          style: editedButton.style
-        }))
       }
     }
   }

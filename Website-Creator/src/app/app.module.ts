@@ -9,7 +9,6 @@ import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {ResizableModule} from "angular-resizable-element";
-import {ResizeComponent} from "./resize-selector/resize.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {StoreModule} from "@ngrx/store";
 import {buttonEditorReducer} from "../store/button-editor.reducer";
@@ -36,7 +35,6 @@ const routes: Routes = [
     AppComponent,
     ResizeManipulatorDirective,
     MoveManipulatorDirective,
-    ResizeComponent,
     LoginComponent,
     CreatorComponent,
     RegistrationComponent

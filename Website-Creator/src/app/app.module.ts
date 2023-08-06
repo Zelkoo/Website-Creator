@@ -24,6 +24,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {CreatorComponent} from "./creator/creator.component";
+import { PropertyPanelComponent } from './creator/property-panel/property-panel.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'edit', component: CreatorComponent },
@@ -37,10 +39,12 @@ const routes: Routes = [
     MoveManipulatorDirective,
     LoginComponent,
     CreatorComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PropertyPanelComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
     DragDropModule,

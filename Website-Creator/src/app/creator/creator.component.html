@@ -1,79 +1,17 @@
-<div class="button-wrapper" *ngFor="let button of buttons; let i = index" (click)="onEdit($event, button.id)">
+<div class="button-wrapper" *ngFor="let element of elements; let i = index" (click)="onEdit($event, element.id)">
   <button
-    [attr.id]="'button-' + button.id"
+    [attr.id]="'button-' + element.id"
     class="button is-warning resizable-draggable"
     [ngClass]="{'res': isEditMode}"
-    [ngStyle]="button.style"
+    [ngStyle]="element.style"
   >
-   {{ button.text || button.id + ' New Button'  }}
+   {{ element.text || element.id + ' New Button'  }}
   </button>
 
 </div>
+<app-property-panel [lastEditedButtonId]="lastEditedButtonId" [elements]="elements" [elementType]="elementType"></app-property-panel>
 
 <button class="button is-success" (click)="onCreateNewButton()">Create new element</button>
-<div class="property-panel">
-  <div class="selected-element">
-    Selected Element {{elementType + ' ' + lastEditedButtonId  }}
-  </div>
-  <div class="picker-container">
-    <div class="bg-color-col-picker">
-      <p>Bacgkournd Color</p>
-      <input [style.background]="selector?.style.background"
-             [cpToggle]="false"
-             (colorPickerChange)="changeStyle('background')"
-             [(colorPicker)]="arrayColors[selectedColor]"
-      />
-    </div>
-
-    <div class="font-color-col-picker">
-      <p>Font Color</p>
-      <input [style.background]="selector?.style.color"
-             [cpToggle]="false"
-             (colorPickerChange)="changeStyle('color')"
-             [(colorPicker)]="arrayColors[selectedColor]"
-      />
-    </div>
-  </div>
-  <div class="slider-container">
-    <p>Font Size ({{fontSize + 'px'}})</p>
-    <input
-      class="slider is-fullwidth"
-      step="1"
-      min="0"
-      max="200"
-      value="50"
-      type="range"
-      [value]="fontSize"
-      (change)="changeStyle('fontSize')"
-      [(ngModel)]="fontSize"
-    >
-    <p>Border Radius ({{borderRadius + 'px'}})</p>
-
-    <input
-      class="slider is-fullwidth"
-      step="1"
-      min="0"
-      max="300"
-      value="50"
-      type="range"
-      [value]="borderRadius"
-      (change)="changeStyle('borderRadius')"
-      [(ngModel)]="borderRadius"
-    >
-
-  </div>
-  <div class="edit-text-container">
-    <label for="button-text-input">Edit button text</label>
-    <input
-      class="input is-primary"
-      type="text"
-      id="button-text-input"
-      [(ngModel)]="lastEditedButtonText"
-
-
-      (ngModelChange)="updateButtonText()"
-    />
-  </div>
-</div>
+<!--<button class="button is-success" (click)="createNewTitle()">Create new element</button>-->
 
 

@@ -1,0 +1,70 @@
+<div class="property-panel">
+  <div class="selected-element">
+    Selected Element {{elementType + ' ' + lastEditedButtonId  }}
+  </div>
+  <div class="element-style" >
+    <button class="button is-info" (click)="toggleStyleMenu()">Element style</button>
+    <div [@styleMenuState]="isStyleMenuOpen ? 'open' : 'closed'">
+      <div class="picker-container">
+        <div class="bg-color-col-picker">
+          <p>Bacgkournd Color</p>
+          <input [style.background]="selector?.style.background"
+                 [cpToggle]="false"
+                 (colorPickerChange)="changeStyle('background')"
+                 [(colorPicker)]="arrayColors[selectedColor]"
+          />
+        </div>
+
+        <div class="font-color-col-picker">
+          <p>Font Color</p>
+          <input [style.background]="selector?.style.color"
+                 [cpToggle]="false"
+                 (colorPickerChange)="changeStyle('color')"
+                 [(colorPicker)]="arrayColors[selectedColor]"
+          />
+        </div>
+      </div>
+      <div class="slider-container">
+        <p>Font Size ({{fontSize + 'px'}})</p>
+        <input
+          class="slider is-fullwidth"
+          step="1"
+          min="0"
+          max="200"
+          value="50"
+          type="range"
+          [value]="fontSize"
+          (change)="changeStyle('fontSize')"
+          [(ngModel)]="fontSize"
+        >
+        <p>Border Radius ({{borderRadius + 'px'}})</p>
+
+        <input
+          class="slider is-fullwidth"
+          step="1"
+          min="0"
+          max="300"
+          value="50"
+          type="range"
+          [value]="borderRadius"
+          (change)="changeStyle('borderRadius')"
+          [(ngModel)]="borderRadius"
+        >
+
+      </div>
+    </div>
+  </div>
+
+  <div class="element-content">
+    <div class="edit-text-container" [@styleMenuState]="isStyleMenuOpen ? 'open' : 'closed'">
+      <label for="button-text-input">Edit Content text</label>
+      <input
+        class="input is-primary"
+        type="text"
+        id="button-text-input"
+        [(ngModel)]="lastEditedButtonText"
+        (ngModelChange)="updateButtonText()"
+      />
+    </div>
+  </div>
+</div>

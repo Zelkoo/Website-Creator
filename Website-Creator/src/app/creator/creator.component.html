@@ -5,23 +5,75 @@
     [ngClass]="{'res': isEditMode}"
     [ngStyle]="button.style"
   >
-    <span>{{ button.text || 'Button Primary' }}  </span></button>
+   {{ button.text || button.id + ' New Button'  }}
+  </button>
 
 </div>
-<div >
-  <label for="button-text-input">Edit button text</label>
-  <input
-    type="text"
-    id="button-text-input"
-    [(ngModel)]="lastEditedButtonText"
-    (ngModelChange)="updateButtonText()"
-  />
+
+<button class="button is-success" (click)="onCreateNewButton()">Create new element</button>
+<div class="property-panel">
+  <div class="selected-element">
+    Selected Element {{elementType + ' ' + lastEditedButtonId  }}
+  </div>
+  <div class="picker-container">
+    <div class="bg-color-col-picker">
+      <p>Bacgkournd Color</p>
+      <input [style.background]="selector?.style.background"
+             [cpToggle]="false"
+             (colorPickerChange)="changeStyle('background')"
+             [(colorPicker)]="arrayColors[selectedColor]"
+      />
+    </div>
+
+    <div class="font-color-col-picker">
+      <p>Font Color</p>
+      <input [style.background]="selector?.style.color"
+             [cpToggle]="false"
+             (colorPickerChange)="changeStyle('color')"
+             [(colorPicker)]="arrayColors[selectedColor]"
+      />
+    </div>
+  </div>
+  <div class="slider-container">
+    <p>Font Size ({{fontSize + 'px'}})</p>
+    <input
+      class="slider is-fullwidth"
+      step="1"
+      min="0"
+      max="200"
+      value="50"
+      type="range"
+      [value]="fontSize"
+      (change)="changeStyle('fontSize')"
+      [(ngModel)]="fontSize"
+    >
+    <p>Border Radius ({{borderRadius + 'px'}})</p>
+
+    <input
+      class="slider is-fullwidth"
+      step="1"
+      min="0"
+      max="300"
+      value="50"
+      type="range"
+      [value]="borderRadius"
+      (change)="changeStyle('borderRadius')"
+      [(ngModel)]="borderRadius"
+    >
+
+  </div>
+  <div class="edit-text-container">
+    <label for="button-text-input">Edit button text</label>
+    <input
+      class="input is-primary"
+      type="text"
+      id="button-text-input"
+      [(ngModel)]="lastEditedButtonText"
+
+
+      (ngModelChange)="updateButtonText()"
+    />
+  </div>
 </div>
 
-<button (click)="onCreateNewButton()">Create New Button</button>
 
-<div class="colorPaletteContainer">
-  <h1>bg color</h1>
-  <span [style.background]="arrayColors[selectedColor]" [cpToggle]="true" [cpDialogDisplay]="'inline'"
-        [cpCancelButton]="true" [(colorPicker)]="arrayColors[selectedColor]" (colorPickerChange)="changeStyle()"></span>
-</div>

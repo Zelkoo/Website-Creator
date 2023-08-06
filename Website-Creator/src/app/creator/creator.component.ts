@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Store} from "@ngrx/store";
-import {Button, ButtonEditorState} from "../../store/button-editor.state";
+import {ButtonEditorState} from "../../store/button-editor.state";
 import {InteractHandlerService} from "../services/interact-handler";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
-import * as ButtonEditorActions from '../../store/button-editor.actions';
 
 @Component({
   selector: 'creator',
@@ -15,17 +14,17 @@ export class CreatorComponent implements OnInit {
   @Input()
   model: any;
   @Input()
-  options: any;
+  elementType: string = ''
   isEditMode = true;
   buttons: any[] = [];
   nextButtonId = 1;
   lastEditedButtonId: number | null = null;
   lastEditedButtonText: string = '';
   style: object = {};
+  color: string = '#FFDC7D'
+  selector!: any
   fontSize: number = 16
-  color: string = '#2889e9'
-  background: string = '';
-
+  borderRadius: number = 0
   arrayColors: Record<string, string> = {
     color1: '#2883e9',
     color2: '#e920e9',
@@ -43,12 +42,10 @@ export class CreatorComponent implements OnInit {
   }
 
   onEdit($event: any, buttonId: number | null) {
+    if ($event?.target) {
+      this.elementType = ($event.target as HTMLElement).tagName
+    }
     this.lastEditedButtonId = buttonId;
-    this.lastEditedButtonText = this.buttons.find((button) => button.id === buttonId)?.text;
-    this.lastEditedButtonText = this.buttons.find((button) => button.id === buttonId)?.fontSize;
-    this.lastEditedButtonText = this.buttons.find((button) => button.id === buttonId)?.background;
-    this.lastEditedButtonText = this.buttons.find((button) => button.id === buttonId)?.color
-
 
     if (buttonId) {
       return;
@@ -79,13 +76,20 @@ export class CreatorComponent implements OnInit {
     }
   }
 
-  public changeStyle(): any {
+  public changeStyle(styleProperty: string): any {
     if (this.lastEditedButtonId !== null) {
-      const editedButton = this.buttons.find((button) => button.id === this.lastEditedButtonId);
-      if (editedButton) {
-        editedButton.style = {
-          ...editedButton.style,
-          background: this.arrayColors[this.selectedColor],
+      const editedSelector = this.buttons.find((button) => button.id === this.lastEditedButtonId);
+      this.selector = editedSelector
+      const styleValue =
+        styleProperty === 'fontSize'
+          ? `${this.fontSize}px`
+          : styleProperty === 'borderRadius'
+            ? `${this.borderRadius}px`
+            : this.arrayColors[this.selectedColor];
+      if (editedSelector) {
+        editedSelector.style = {
+          ...editedSelector.style,
+          [styleProperty]: styleValue
         };
       }
     }

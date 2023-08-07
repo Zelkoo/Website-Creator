@@ -26,6 +26,8 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {CreatorComponent} from "./creator/creator.component";
 import { PropertyPanelComponent } from './creator/property-panel/property-panel.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { ChangeBackgroundDirective} from './app-change-background.directive';
+import { WorkspaceComponent } from './creator/workspace/workspace.component';
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'edit', component: CreatorComponent },
@@ -40,7 +42,9 @@ const routes: Routes = [
     LoginComponent,
     CreatorComponent,
     RegistrationComponent,
-    PropertyPanelComponent
+    PropertyPanelComponent,
+    ChangeBackgroundDirective,
+    WorkspaceComponent,
   ],
   imports: [
     BrowserModule,

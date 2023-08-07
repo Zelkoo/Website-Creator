@@ -5,3 +5,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body {
   overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden;}
+.container-workspace-property-panel {
+  display: flex;
+  height: 100vh; /* view height - full height of the viewport */
+}
+
+.property-panel {
+  width: 300px;
+  background-color: #f8f9fa;
+  overflow: auto;
+}
+
+.workspace {
+  flex-grow: 1;
+  background-color: #e9ecef;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden;}

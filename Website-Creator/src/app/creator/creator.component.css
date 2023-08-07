@@ -92,5 +92,24 @@ button span {
 
 .button.is-success {
   position: absolute;
-  top: 400px;
+  bottom: 0;
 }
+.on-dropzone {
+  height: 100%;
+  width: 100%;
+  background: #ffa100;
+}
+
+
+.drag1.dragging {
+  background-color: green;
+}
+
+.drag1.can-drop {
+  background-color: #ffa100;
+}
+
+.drag1.cannot-drop {
+  background-color: yellow;
+}
+

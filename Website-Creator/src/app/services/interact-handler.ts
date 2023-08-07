@@ -8,8 +8,8 @@ export class InteractHandlerService {
 
   constructor() { }
 
-  setupResizableAndDraggable(selector: string) {
-    interact(selector)
+  setupResizableAndDraggable(dragSelector: string, dropSelector: string) {
+    interact(dragSelector)
       .resizable({
         edges: { top: true, left: true, bottom: true, right: true },
         listeners: {
@@ -48,5 +48,23 @@ export class InteractHandlerService {
           }
         }
       });
-  }
-}
+
+    interact(dropSelector).dropzone({
+      accept: '.draggable',
+      overlap: 0.75,
+      ondropactivate: (event) => {
+        event.relatedTarget.classList.add('dragging');
+      },
+      ondropdeactivate: (event) => {
+        event.relatedTarget.classList.remove('dragging', 'cannot-drop');
+      },
+      ondragenter: (event) => {
+        event.relatedTarget.classList.remove('cannot-drop');
+        event.relatedTarget.classList.add('can-drop');
+      },
+      ondragleave: (event) => {
+        event.relatedTarget.classList.remove('can-drop');
+        event.relatedTarget.classList.add('cannot-drop');
+      }
+    });
+  }}

@@ -2,9 +2,10 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  width: 23%;
-  border-right: 2px solid red;
+  width: 419px;
   height: 100%;
+  background: #3e9ac9;
+  gap: 41px;
 }
 .colorPaletteContainer {
   position: relative;
@@ -55,4 +56,22 @@
 
 .is-active {
   display: block;
+}
+p {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+.edit-text-container {
+  width: 100%;
+}
+
+.hide{
+  width: 100%;
+}
+
+.selected-element {
+  position: relative;
+  top: 15px;
+  font-size: 23px;
+  font-weight: 600;
 }

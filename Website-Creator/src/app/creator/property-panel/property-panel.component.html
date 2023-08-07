@@ -3,7 +3,7 @@
     Selected Element {{elementType + ' ' + lastEditedButtonId  }}
   </div>
   <div class="element-style" >
-    <button class="button is-info" (click)="toggleStyleMenu()">Element style</button>
+    <button class="button is-primary hide" (click)="toggleStyleMenu()">Element style</button>
     <div [@styleMenuState]="isStyleMenuOpen ? 'open' : 'closed'">
       <div class="picker-container">
         <div class="bg-color-col-picker">
@@ -57,7 +57,7 @@
 
   <div class="element-content">
     <div class="edit-text-container" [@styleMenuState]="isStyleMenuOpen ? 'open' : 'closed'">
-      <label for="button-text-input">Edit Content text</label>
+      <p for="button-text-input">Edit Content text</p>
       <input
         class="input is-primary"
         type="text"

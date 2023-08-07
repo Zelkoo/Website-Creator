@@ -38,7 +38,7 @@ export class PropertyPanelComponent {
   @Input() elements: any[] = [];
   @Input() elementType: string = ''
   @Input() fontSize: string = '0'
-  isStyleMenuOpen: boolean = true;
+  isStyleMenuOpen: boolean = false  ;
 
   arrayColors: Record<string, string> = {
     color1: '#2883e9',

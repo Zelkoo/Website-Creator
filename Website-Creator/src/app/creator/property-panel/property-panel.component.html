@@ -2,7 +2,7 @@
   <div class="selected-element">
     Selected Element {{elementType + ' ' + lastEditedButtonId  }}
   </div>
-  <div class="element-style" >
+  <div class="element-style"  >
     <button class="button is-primary hide" (click)="toggleStyleMenu()">Element style</button>
     <div [@styleMenuState]="isStyleMenuOpen ? 'open' : 'closed'">
       <div class="picker-container">
@@ -54,7 +54,20 @@
       </div>
     </div>
   </div>
-
+  <div class="align-items" >
+    <div class="icon-position" >
+      <p>Text position</p>
+      <label class="alignment-button">
+        <button (click)="changeStyle('align-items', 'flex-start')"> <i class="fas fa-align-left"></i></button>
+      </label>
+      <label class="alignment-button">
+        <button (click)="changeStyle('align-items', 'center')"> <i class="fas fa-align-center"></i></button>
+      </label>
+      <label class="alignment-button">
+        <button (click)="changeStyle('align-items', 'flex-end')"> <i class="fas fa-align-right"></i></button>
+      </label>
+    </div>
+  </div>
   <div class="element-content">
     <div class="edit-text-container" [@styleMenuState]="isStyleMenuOpen ? 'open' : 'closed'">
       <p for="button-text-input">Edit Content text</p>
@@ -67,4 +80,5 @@
       />
     </div>
   </div>
+
 </div>

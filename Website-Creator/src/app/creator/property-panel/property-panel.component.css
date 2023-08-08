@@ -75,3 +75,10 @@ p {
   font-size: 23px;
   font-weight: 600;
 }
+
+.alignment-button button {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+}

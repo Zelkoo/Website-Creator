@@ -38,7 +38,8 @@ export class PropertyPanelComponent {
   @Input() elements: any[] = [];
   @Input() elementType: string = ''
   @Input() fontSize: string = '0'
-  isStyleMenuOpen: boolean = false  ;
+  @Input() alignItems: string = 'center'
+  isStyleMenuOpen: boolean = true ;
 
   arrayColors: Record<string, string> = {
     color1: '#2883e9',
@@ -50,7 +51,7 @@ export class PropertyPanelComponent {
   selectedColor: string = 'color1';
   selector!: any
   borderRadius: number = 0
-
+  left: string = 'bottom-left'
   public toggleStyleMenu() {
     this.isStyleMenuOpen = !this.isStyleMenuOpen;
   }
@@ -64,16 +65,22 @@ export class PropertyPanelComponent {
     }
   }
 
-  public changeStyle(styleProperty: string): any {
+  public changeStyle(styleProperty: string, styleValueOverride?: string): any {
     if (this.lastEditedButtonId !== null) {
       const editedSelector = this.elements.find((element) => element.id === this.lastEditedButtonId);
-      this.selector = editedSelector
-      const styleValue =
-        styleProperty === 'fontSize'
-          ? `${this.fontSize}px`
-          : styleProperty === 'borderRadius'
-            ? `${this.borderRadius}px`
-            : this.arrayColors[this.selectedColor];
+      this.selector = editedSelector;
+
+      let styleValue = styleValueOverride;
+
+      if (!styleValueOverride) {
+        styleValue = styleProperty === 'align-items' ? `${this.alignItems}` :
+          styleProperty === 'fontSize'
+            ? `${this.fontSize}px`
+            : styleProperty === 'borderRadius'
+              ? `${this.borderRadius}px`
+              : this.arrayColors[this.selectedColor];
+      }
+
       if (editedSelector) {
         editedSelector.style = {
           ...editedSelector.style,

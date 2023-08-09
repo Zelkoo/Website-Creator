@@ -28,6 +28,10 @@ import { PropertyPanelComponent } from './creator/property-panel/property-panel.
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ChangeBackgroundDirective} from './app-change-background.directive';
 import { WorkspaceComponent } from './creator/workspace/workspace.component';
+import { UploadComponent } from './creator/file-upload/upload.component';
+import { UploadDetailsComponent } from './creator/upload-details/upload-details.component';
+import { UploadListComponent } from './creator/upload-list/upload-list.component';
+import { UploadFormComponent } from './creator/upload-form/upload-form.component';
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'edit', component: CreatorComponent },
@@ -45,6 +49,10 @@ const routes: Routes = [
     PropertyPanelComponent,
     ChangeBackgroundDirective,
     WorkspaceComponent,
+    UploadComponent,
+    UploadDetailsComponent,
+    UploadListComponent,
+    UploadFormComponent,
   ],
   imports: [
     BrowserModule,

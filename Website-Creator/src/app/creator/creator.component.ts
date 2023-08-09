@@ -15,6 +15,8 @@ import {InteractHandlerService} from "../services/interact-handler";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import interact from "interactjs";
+import {FileUpload} from "./file-upload/file-upload";
+import {FileUploadService} from "./file-upload/file-upload.service";
 
 @Component({
   selector: 'creator',
@@ -29,7 +31,7 @@ export class CreatorComponent implements OnInit, AfterViewInit {
   public lastEditedButtonId: number | null = null;
   public elementType: string = ''
 
-  constructor(private store: Store<ButtonEditorState>, private interactHandler: InteractHandlerService, private afAuth: AngularFireAuth, private renderer: Renderer2, private router: Router) {
+  constructor(private uploadService: FileUploadService,private store: Store<ButtonEditorState>, private interactHandler: InteractHandlerService, private afAuth: AngularFireAuth, private renderer: Renderer2, private router: Router) {
   }
   element = {
     id: 1,

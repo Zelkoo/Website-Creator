@@ -16,7 +16,6 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {ButtonEditorEffects} from "../store/button-editor.effects";
 import {EffectsModule} from "@ngrx/effects";
 import {MatInputModule} from "@angular/material/input";
-import {ColorPickerModule} from "ngx-color-picker";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
@@ -26,12 +25,13 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {CreatorComponent} from "./creator/creator.component";
 import { PropertyPanelComponent } from './creator/property-panel/property-panel.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { ChangeBackgroundDirective} from './app-change-background.directive';
 import { WorkspaceComponent } from './creator/workspace/workspace.component';
 import { UploadComponent } from './creator/file-upload/upload.component';
 import { UploadDetailsComponent } from './creator/upload-details/upload-details.component';
 import { UploadListComponent } from './creator/upload-list/upload-list.component';
 import { UploadFormComponent } from './creator/upload-form/upload-form.component';
+import {ColorPickerModule} from "ngx-color-picker";
+import {NgxColorsModule} from "ngx-colors";
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'edit', component: CreatorComponent },
@@ -47,7 +47,6 @@ const routes: Routes = [
     CreatorComponent,
     RegistrationComponent,
     PropertyPanelComponent,
-    ChangeBackgroundDirective,
     WorkspaceComponent,
     UploadComponent,
     UploadDetailsComponent,
@@ -58,8 +57,10 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgxColorsModule,
     MatButtonModule,
     DragDropModule,
+    ColorPickerModule,
     ResizableModule,
     MatSliderModule,
     MatCheckboxModule,

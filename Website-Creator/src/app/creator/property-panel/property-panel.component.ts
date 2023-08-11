@@ -39,7 +39,6 @@ export class PropertyPanelComponent {
   @Input() elementType: string = ''
   @Input() fontSize: string = '0'
   @Input() alignItems: string = 'center'
-  isStyleMenuOpen: boolean = true ;
 
   arrayColors: Record<string, string> = {
     color1: '#2883e9',
@@ -50,12 +49,16 @@ export class PropertyPanelComponent {
   };
   selectedColor: string = 'color1';
   selector!: any
+  color: string = "#1976D2";
+
   borderRadius: number = 0
   left: string = 'bottom-left'
-  public toggleStyleMenu() {
-    this.isStyleMenuOpen = !this.isStyleMenuOpen;
-  }
 
+  showTypographyPanel = false;
+
+  togglePropertyPanel() {
+    this.showTypographyPanel = !this.showTypographyPanel;
+  }
   public updateButtonText() {
     if (this.lastEditedButtonId !== null) {
       const editedButton = this.elements.find((element) => element.id === this.lastEditedButtonId);

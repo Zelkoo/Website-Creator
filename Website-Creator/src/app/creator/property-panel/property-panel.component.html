@@ -6,12 +6,11 @@
     <div class="typography-expand">
       <p>Typography</p>
       <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel()"></i>
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('typography')"></i>
       </div>
     </div>
     <div class="typography-panel"  [class.active]="showTypographyPanel">
       <p >Style</p>
-
       <div class="typography-panel-content">
         <div class="font-content">
           <p class="font-title">Font</p>
@@ -58,7 +57,6 @@
               <span class="suffix">px</span>
             </div>
           </div>
-
           <div class="edit-text-container">
             <div>
             <p for="button-text-input">Edit Content text</p>
@@ -70,7 +68,6 @@
               (ngModelChange)="updateButtonText()"
             />
           </div>
-
         </div>
       </div>
       <div class="align-items" >
@@ -89,4 +86,43 @@
       </div>
   </div>
 </div>
+  <div class="border-container">
+    <div class="border-expand">
+      <p>Borders</p>
+      <div class="icon">
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('border')"></i>
+      </div>
+    </div>
+    <div class="border-panel"  [class.active]="showBorderPanel">
+      <div class="border-panel-content">
+
+        <div class="input-container">
+
+          <div class="border-panel">
+            <div class="border-expand" [class.active]="showBorderPanel">
+              <div class="icon">
+                <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('border')"></i>
+              </div>
+            </div>
+          </div>
+          <p>Radius</p>
+          <input class="input-border-value">
+          <input class="input-border-value" [value]="borderRadius" [(ngModel)]="borderRadius">
+          <input
+            class="slider is-fullwidth"
+            step="1"
+            min="0"
+            max="200"
+            value="50"
+            type="range"
+            [value]="borderRadius"
+            (change)="changeStyle('borderRadius')"
+            [(ngModel)]="borderRadius"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

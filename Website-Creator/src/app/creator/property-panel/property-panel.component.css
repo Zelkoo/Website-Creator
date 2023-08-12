@@ -5,7 +5,7 @@
   width: 419px;
   height: 100%;
   background: #31314a;
-  gap: 41px;
+  /*gap: 41px;*/
 }
 .colorPaletteContainer {
   position: relative;
@@ -17,7 +17,6 @@
   align-items: baseline;
   flex-direction: row;
 }
-
 .bg-color-col-picker input {
   width: 25px;
   margin-left: 7px;
@@ -29,7 +28,6 @@
   align-items: baseline;
   flex-direction: row;
 }
-
 .font-color-col-picker input {
   width: 25px;
   margin-left: 7px;
@@ -40,12 +38,9 @@
   flex-direction: column;
   width: 129px;
 }
-
-
 .element-style p {
   cursor: pointer;
 }
-
 .style-menu {
   margin-top: 10px;
   border: 1px solid #ccc;
@@ -53,29 +48,24 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .is-active {
   display: block;
 }
 p {
   font-size: 1.1rem;
-  /*font-weight: 800;*/
 }
 .edit-text-container {
   width: 100%;
 }
-
 .hide{
   width: 100%;
 }
-
 .selected-element {
   position: relative;
   top: 15px;
   font-size: 23px;
   font-weight: 600;
 }
-
 .alignment-button-left button,
 .alignment-button-right button,
 .alignment-button-center button {
@@ -84,11 +74,10 @@ p {
   background: transparent;
   font-size: 1.5rem;
 }
-.typography-container {
+.typography-container, .border-container {
   background-color: #16162c;
 }
-
-.typography-expand {
+.typography-expand, .border-expand {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
@@ -97,37 +86,41 @@ p {
   margin-right: 20px;
   font-size: 20px;
 }
+.typography-container, .border-container {
+  position: relative;
+  top: 25px;
+}
 
-.typography-expand p {
+.typography-expand p, .border-expand p {
   margin-right: auto;
   flex: 1;
 }
 
-.typography-expand i.fa-solid {
+.typography-expand i.fa-solid, .border-expand i.fa-solid {
   margin-right: 5px;
   cursor: pointer;
 }
-.typography-panel {
+.typography-panel, .border-panel {
   background-color: #16162c;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.9s ease-in-out;
 
 }
-.typography-panel-content {
-  /*display: flex;*/
-  /*flex-direction: row;*/
-  /*justify-content: space-around;*/
-  /*align-items: flex-start;*/
+.typography-panel-content, .border-panel-content {
   display: flex;
   gap: 12px;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
 }
-.typography-panel.active {
+.border-panel-content {
+  height: 58px;
+}
+.typography-panel.active, .border-panel.active {
   max-height: 500px;
 }
+
 .dropdown-trigger .button {
   width: 196px;
   display: flex;
@@ -243,5 +236,15 @@ p {
 .alignment-button-left button:hover,
 .alignment-button-right button:hover,
 .alignment-button-center button:hover {
-  color: #252546;
+  color: #3a3a62;
+}
+.input-container .input-border-value {
+  width: 50px
+}
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+  top: 5px;
 }

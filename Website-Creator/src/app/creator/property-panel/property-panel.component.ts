@@ -55,9 +55,13 @@ export class PropertyPanelComponent {
   left: string = 'bottom-left'
 
   showTypographyPanel = false;
-
-  togglePropertyPanel() {
-    this.showTypographyPanel = !this.showTypographyPanel;
+  showBorderPanel = false;
+  togglePropertyPanel(showPanel: string) {
+    if (showPanel === 'typography') {
+      this.showTypographyPanel = !this.showTypographyPanel;
+    } else if (showPanel === 'border') {
+      this.showBorderPanel = !this.showBorderPanel;
+    }
   }
   public updateButtonText() {
     if (this.lastEditedButtonId !== null) {

@@ -1,0 +1,33 @@
+version: 2.1
+
+workflows:
+  build-and-test:
+    jobs:
+      - build
+      - test
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4.0
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:16.18.1
+    steps:
+      - checkout
+      - run:
+          name: Install dependecies
+          command: npm install && npm install @callofduty/assets
+      - run:
+          name: Build
+          command: npm run build
+  test:
+    docker:
+      - image: cimg/node:16.19.0-browsers
+    steps:
+      - checkout
+      - run: npm install
+      - browser-tools/install-chrome:
+          channel: stable
+      - run:
+          command: npm test

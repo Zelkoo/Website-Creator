@@ -50,17 +50,22 @@ export class PropertyPanelComponent {
   selectedColor: string = 'color1';
   selector!: any
   color: string = "#1976D2";
-
+  opacityValue: string = '100';
   borderRadius: number = 0
   left: string = 'bottom-left'
-
+  showEffectsPanel = false;
   showTypographyPanel = false;
   showBorderPanel = false;
+  showSizePanel = false;
   togglePropertyPanel(showPanel: string) {
     if (showPanel === 'typography') {
       this.showTypographyPanel = !this.showTypographyPanel;
     } else if (showPanel === 'border') {
       this.showBorderPanel = !this.showBorderPanel;
+    } else if (showPanel === 'effects') {
+      this.showEffectsPanel = !this.showEffectsPanel
+    } else if (showPanel === 'size') {
+      this.showSizePanel = !this.showSizePanel
     }
   }
   public updateButtonText() {
@@ -81,6 +86,7 @@ export class PropertyPanelComponent {
 
       if (!styleValueOverride) {
         styleValue = styleProperty === 'align-items' ? `${this.alignItems}` :
+          styleProperty === 'opacity' ? `${this.opacityValue}%` :
           styleProperty === 'fontSize'
             ? `${this.fontSize}px`
             : styleProperty === 'borderRadius'

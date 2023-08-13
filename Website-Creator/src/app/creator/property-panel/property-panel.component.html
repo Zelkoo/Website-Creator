@@ -95,9 +95,7 @@
     </div>
     <div class="border-panel"  [class.active]="showBorderPanel">
       <div class="border-panel-content">
-
         <div class="input-container">
-
           <div class="border-panel">
             <div class="border-expand" [class.active]="showBorderPanel">
               <div class="icon">
@@ -123,6 +121,60 @@
       </div>
     </div>
   </div>
+  <div class="effects-container">
+    <div class="effects-expand">
+      <p>Effects</p>
+      <div class="icon">
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('effects')"></i>
+      </div>
+    </div>
+    <div class="effects-panel"  [class.active]="showEffectsPanel">
+      <div class="effects-panel-content">
 
+        <div class="input-container">
+          <p>Opacity</p>
+          <input class="input-border-value" [value]="opacityValue" [(ngModel)]="opacityValue">
+          <input
+            class="slider is-fullwidth"
+            step="1"
+            min="0"
+            max="100"
+            value="100"
+            type="range"
+            [value]="opacityValue"
+            (change)="changeStyle('opacity')"
+            [(ngModel)]="opacityValue"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="size-container">
+    <div class="size-expand">
+      <p>Size</p>
+      <div class="icon">
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('size')"></i>
+      </div>
+    </div>
+    <div class="size-panel"  [class.active]="showSizePanel">
+      <div class="size-panel-content">
+        <div class="input-container">
+          <p>Opacity</p>
+          <input class="input-border-value" [value]="opacityValue" [(ngModel)]="opacityValue">
+          <input
+            class="slider is-fullwidth"
+            step="1"
+            min="0"
+            max="100"
+            value="100"
+            type="range"
+            [value]="opacityValue"
+            (change)="changeStyle('opacity')"
+            [(ngModel)]="opacityValue"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

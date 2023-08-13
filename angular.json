@@ -20,7 +20,8 @@
               "zone.js"
             ],
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "interactjs"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [

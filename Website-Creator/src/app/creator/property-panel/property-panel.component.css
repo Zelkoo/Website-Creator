@@ -5,7 +5,6 @@
   width: 419px;
   height: 100%;
   background: #31314a;
-  /*gap: 41px;*/
 }
 .colorPaletteContainer {
   position: relative;
@@ -74,10 +73,11 @@ p {
   background: transparent;
   font-size: 1.5rem;
 }
-.typography-container, .border-container {
+
+.typography-container, .border-container, .effects-container, .size-container {
   background-color: #16162c;
 }
-.typography-expand, .border-expand {
+.typography-expand, .border-expand, .effects-expand, .size-expand {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
@@ -86,41 +86,39 @@ p {
   margin-right: 20px;
   font-size: 20px;
 }
-.typography-container, .border-container {
+.typography-container, .border-container, .effects-container, .size-container {
   position: relative;
   top: 25px;
 }
-
-.typography-expand p, .border-expand p {
+.typography-expand p, .border-expand p, .effects-expand p, .size-expand p {
   margin-right: auto;
   flex: 1;
 }
-
-.typography-expand i.fa-solid, .border-expand i.fa-solid {
+.typography-expand i.fa-solid, .border-expand i.fa-solid, .effects-expand i.fa-solid, .size-expand i.fa-solid {
   margin-right: 5px;
   cursor: pointer;
 }
-.typography-panel, .border-panel {
+.typography-panel, .border-panel, .effects-panel, .size-panel   {
   background-color: #16162c;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.9s ease-in-out;
 
 }
-.typography-panel-content, .border-panel-content {
+.typography-panel-content, .border-panel-content, .effects-panel-content, .size-panel-content {
   display: flex;
   gap: 12px;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
 }
-.border-panel-content {
-  height: 58px;
-}
-.typography-panel.active, .border-panel.active {
+.typography-panel.active, .border-panel.active, .effects-panel.active, .size-panel.active {
   max-height: 500px;
 }
 
+.border-panel-content {
+  height: 58px;
+}
 .dropdown-trigger .button {
   width: 196px;
   display: flex;

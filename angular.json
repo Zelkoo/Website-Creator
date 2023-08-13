@@ -20,7 +20,8 @@
               "zone.js"
             ],
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "interactjs"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -40,8 +41,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",

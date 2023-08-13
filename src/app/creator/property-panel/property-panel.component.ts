@@ -48,15 +48,18 @@ export class PropertyPanelComponent {
     color5: 'rgba(45,208,45,1)'
   };
   selectedColor: string = 'color1';
+  selectedBackgroundColor: string = 'color2'
   selector!: any
   color: string = "#1976D2";
   opacityValue: string = '100';
   borderRadius: number = 0
+  backgroundColor: any
   left: string = 'bottom-left'
   showEffectsPanel = false;
   showTypographyPanel = false;
   showBorderPanel = false;
   showSizePanel = false;
+  showBackgroundPanel = false;
   togglePropertyPanel(showPanel: string) {
     if (showPanel === 'typography') {
       this.showTypographyPanel = !this.showTypographyPanel;
@@ -66,6 +69,8 @@ export class PropertyPanelComponent {
       this.showEffectsPanel = !this.showEffectsPanel
     } else if (showPanel === 'size') {
       this.showSizePanel = !this.showSizePanel
+    } else if (showPanel === 'background') {
+      this.showBackgroundPanel = !this.showBackgroundPanel
     }
   }
   public updateButtonText() {
@@ -90,7 +95,9 @@ export class PropertyPanelComponent {
           styleProperty === 'fontSize'
             ? `${this.fontSize}px`
             : styleProperty === 'borderRadius'
-              ? `${this.borderRadius}px`
+              ? `${this.borderRadius}px` :
+                styleProperty === 'background' ?
+              this.arrayColors[this.selectedBackgroundColor]
               : this.arrayColors[this.selectedColor];
       }
 

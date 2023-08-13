@@ -6,10 +6,9 @@
     [ngClass]="{'res': isEditMode}"
     [ngStyle]="element.style"
   >
-   <span>{{ element.text || element.id + ' New Button'  }}</span>
+   {{ element.text || element.id + ' New Button'  }}
   </button>
 </div>
-
 <div class="container-workspace-property-panel">
   <app-property-panel [lastEditedButtonId]="lastEditedButtonId" [elements]="elements" [elementType]="elementType"></app-property-panel>
   <app-workspace></app-workspace>

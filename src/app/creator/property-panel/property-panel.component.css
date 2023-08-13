@@ -4,152 +4,142 @@
   flex-direction: column;
   width: 419px;
   height: 100%;
-  background: #31314a;
+  background: #31314a
 }
-.colorPaletteContainer {
-  position: relative;
-  top: 50px;
-}
-.bg-color-col-picker{
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  flex-direction: row;
-}
-.bg-color-col-picker input {
-  width: 25px;
-  margin-left: 7px;
-  cursor: pointer;
-}
-.font-color-col-picker{
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  flex-direction: row;
-}
-.font-color-col-picker input {
-  width: 25px;
-  margin-left: 7px;
-  cursor: pointer;
-}
+
 .edit-text-container {
   display: flex;
   flex-direction: column;
-  width: 129px;
+  width: 129px
 }
+
 .element-style p {
-  cursor: pointer;
+  cursor: pointer
 }
+
 .style-menu {
   margin-top: 10px;
   border: 1px solid #ccc;
   padding: 10px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1)
 }
+
 .is-active {
-  display: block;
+  display: block
 }
+
 p {
-  font-size: 1.1rem;
+  font-size: 1.1rem
 }
+
 .edit-text-container {
-  width: 100%;
+  width: 100%
 }
-.hide{
-  width: 100%;
-}
+
 .selected-element {
   position: relative;
   top: 15px;
   font-size: 23px;
-  font-weight: 600;
-}
-.alignment-button-left button,
-.alignment-button-right button,
-.alignment-button-center button {
-  cursor: pointer;
-  border: 0;
-  background: transparent;
-  font-size: 1.5rem;
+  font-weight: 600
 }
 
-.typography-container, .border-container, .effects-container, .size-container {
-  background-color: #16162c;
+.alignment-button-center button, .alignment-button-left button, .alignment-button-right button {
+  cursor: pointer;
+  border: 0;
+  background: 0 0;
+  font-size: 1.5rem
 }
-.typography-expand, .border-expand, .effects-expand, .size-expand {
+
+.border-expand, .effects-expand, .size-expand, .typography-expand, .background-expand {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
-  color: #FFFFFF;
+  color: #fff;
   margin-left: 15px;
   margin-right: 20px;
-  font-size: 20px;
+  font-size: 20px
 }
-.typography-container, .border-container, .effects-container, .size-container {
+
+.border-container, .effects-container, .size-container, .typography-container, .background-container {
   position: relative;
   top: 25px;
+  background-color: #16162c;
 }
-.typography-expand p, .border-expand p, .effects-expand p, .size-expand p {
+
+.border-expand p, .effects-expand p, .size-expand p, .typography-expand p, .background-expand p {
   margin-right: auto;
-  flex: 1;
+  flex: 1
 }
-.typography-expand i.fa-solid, .border-expand i.fa-solid, .effects-expand i.fa-solid, .size-expand i.fa-solid {
+
+.border-expand i.fa-solid, .effects-expand i.fa-solid, .size-expand i.fa-solid, .typography-expand i.fa-solid, .background-expand i.fa-solid {
   margin-right: 5px;
-  cursor: pointer;
+  cursor: pointer
 }
-.typography-panel, .border-panel, .effects-panel, .size-panel   {
+
+.border-panel, .effects-panel, .size-panel, .typography-panel, .background-panel {
   background-color: #16162c;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.9s ease-in-out;
-
+  transition: max-height .9s ease-in-out
 }
-.typography-panel-content, .border-panel-content, .effects-panel-content, .size-panel-content {
+
+.border-panel-content, .effects-panel-content, .size-panel-content, .typography-panel-content, .background-panel-content {
   display: flex;
   gap: 12px;
   flex-direction: column;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: flex-start
 }
-.typography-panel.active, .border-panel.active, .effects-panel.active, .size-panel.active {
-  max-height: 500px;
+
+.border-panel.active, .effects-panel.active, .size-panel.active, .typography-panel.active, .background-panel.active {
+  max-height: 500px
 }
 
 .border-panel-content {
-  height: 58px;
+  height: 58px
 }
+
 .dropdown-trigger .button {
   width: 196px;
   display: flex;
   left: -20px;
-  background-color: #2D2D42 ;
+  background-color: #2d2d42;
   border: none;
   justify-content: space-between;
-  color: #e9ecef;
+  color: #e9ecef
 }
+
 .dropdown-container {
   gap: 15px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column
 }
 
 .font-style-content {
   display: flex;
   gap: 17px;
-  align-items: center;
+  align-items: center
 }
 
 .font-style-content input {
   width: 40px;
   border: 0;
   border-radius: 14px;
-  cursor: pointer;
+  cursor: pointer
+}
+.background-panel-content input ,  .border-panel-content input, .effects-panel-content input, .size-panel-content input{
+  height: 37px;
+  border-radius: 12px;
+  border: 0;
+  background-color: #2d2d42;
+  color: #e9ecef;
+  outline: none;
 }
 .font-style-content input:focus-visible {
   border: 0;
-  outline: none;
-  box-shadow: none;
+  outline: 0;
+  box-shadow: none
 }
 
 .container {
@@ -157,58 +147,58 @@ p {
   gap: 15px;
   flex-direction: column;
   top: -40px;
-  margin-right: 10px;
+  margin-right: 10px
 }
-.font-title {
-  margin-left: 50px;
 
-}
-.color-picker.open {
-  left: 100%;
-  top: 5px  ;
+.font-title {
+  margin-left: 50px
 }
 
 .text-style-container {
   gap: 18px;
   display: flex;
   position: relative;
-  right: 23px;
+  right: 23px
 }
 
-.text-style-container input, inputinput:focus-visible {
+.text-style-container input {
   width: 70px;
   height: 37px;
   border-radius: 12px;
   border: 0;
-  outline: none;
+  outline: 0;
   box-shadow: none;
-  background-color: #2D2D42;
-  color: #e9ecef;
+  background-color: #2d2d42;
+  color: #e9ecef
 }
 
 .ngx-color-picker {
   left: -23px;
-  position: relative;
+  position: relative
 }
+
 .input-wrapper {
   position: relative;
-  display: inline-block;
+  display: inline-block
 }
+
 .suffix {
   position: absolute;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
-  pointer-events: none;
+  background: 0 0;
+  pointer-events: none
 }
+
 .align-items {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-around
 }
+
 .icon-position {
-  background: #2D2D42;
+  background: #2d2d42;
   display: flex;
   gap: 45px;
   border-radius: 10px;
@@ -217,32 +207,44 @@ p {
   flex-direction: row;
   position: relative;
   width: 248px;
-  justify-content: center;
+  justify-content: center
 }
 
 .edit-text-container {
   left: -22px;
-  position: relative;
+  position: relative
 }
+
 .align-items p {
   position: relative;
   top: -16px
 }
-.edit-text-container p {
 
+.alignment-button-center button:hover, .alignment-button-left button:hover, .alignment-button-right button:hover {
+  color: #3a3a62
 }
-.alignment-button-left button:hover,
-.alignment-button-right button:hover,
-.alignment-button-center button:hover {
-  color: #3a3a62;
-}
+
 .input-container .input-border-value {
   width: 50px
 }
+
 .input-container {
   display: flex;
   justify-content: center;
   gap: 15px;
   position: relative;
-  top: 5px;
+  top: 5px
+}
+ .background-panel-content {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   height: 50px
+ }
+.effects-panel-content, .size-panel-content {
+  height: 50px;
+}
+.background-panel-content .ngx-color-picker {
+  position: relative;
+  left: 50px;
 }

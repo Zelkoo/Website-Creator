@@ -159,7 +159,7 @@
     <div class="size-panel"  [class.active]="showSizePanel">
       <div class="size-panel-content">
         <div class="input-container">
-          <p>Opacity</p>
+          <p>Width</p>
           <input class="input-border-value" [value]="opacityValue" [(ngModel)]="opacityValue">
           <input
             class="slider is-fullwidth"
@@ -176,5 +176,19 @@
       </div>
     </div>
   </div>
-
+  <div class="background-container">
+    <div class="background-expand">
+      <p>Background</p>
+      <div class="icon">
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('background')"></i>
+      </div>
+    </div>
+    <div class="background-panel"  [class.active]="showBackgroundPanel">
+      <div class="background-panel-content">
+        <p>Color</p>
+        <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedBackgroundColor]"  (change)="changeStyle('background')"></ngx-colors>
+          <input class="input-border-value" [value]="arrayColors[selectedBackgroundColor]" [(ngModel)]="arrayColors[selectedBackgroundColor]">
+      </div>
+    </div>
+  </div>
 </div>

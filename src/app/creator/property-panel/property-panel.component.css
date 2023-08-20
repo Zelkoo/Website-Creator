@@ -248,3 +248,9 @@ p {
   position: relative;
   left: 50px;
 }
+.textarea {
+  max-width: 246px;
+  min-width: 246px;
+  max-height: 250px;
+  min-height: 48px;
+}

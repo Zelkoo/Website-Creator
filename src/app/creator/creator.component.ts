@@ -33,11 +33,12 @@ export class CreatorComponent implements OnInit, AfterViewInit {
 
   constructor(private uploadService: FileUploadService,private store: Store<ButtonEditorState>, private interactHandler: InteractHandlerService, private afAuth: AngularFireAuth, private renderer: Renderer2, private router: Router) {
   }
-  element = {
-    id: 1,
-    style: {},
-    text: 'Button Text'
-  };
+  public onElementClick(): any {
+    if (this.lastEditedButtonId !== null) {
+      console.log(this.elements[this.lastEditedButtonId - 1])
+
+    }
+  }
 
   public ngOnInit() {
   }
@@ -58,19 +59,23 @@ export class CreatorComponent implements OnInit, AfterViewInit {
 
     this.elements.push({
       id: this.nextButtonId++,
+      isHover: false,
       style: {
         position: 'absolute',
-        left: '250px',
+        left: '700px',
         top: '250px',
         width: '100px',
         height: '50px',
-        fontSize: '',
-        background: '',
-        color: ''
+        fontSize: '15',
+        background: '#2883E9',
+        color: '#fff',
+        border: '0',
+        borderRadius: '0',
+        letterSpacing: '0',
+        lineHeight: null
       },
-      text: ''
+      text: 'New Element'
     });
-
   }
 
 

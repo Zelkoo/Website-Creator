@@ -1,16 +1,18 @@
-
 <div class="button-wrapper" *ngFor="let element of elements; let i = index" (click)="onEdit($event, element.id)">
   <button
+    (click)="onElementClick()"
     [attr.id]="'button-' + element.id"
     class="button is-warning resizable-draggable on-dropzone drag1 draggable resizable"
     [ngClass]="{'res': isEditMode}"
     [ngStyle]="element.style"
   >
-   {{ element.text || element.id + ' New Button'  }}
+    {{ element.text  }}
   </button>
 </div>
 <div class="container-workspace-property-panel">
-  <app-property-panel [lastEditedButtonId]="lastEditedButtonId" [elements]="elements" [elementType]="elementType"></app-property-panel>
+  <app-property-panel
+    [lastEditedButtonId]="lastEditedButtonId"
+    [elements]="elements" [elementType]="elementType"></app-property-panel>
   <app-workspace></app-workspace>
 </div>
 

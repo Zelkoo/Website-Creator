@@ -1,4 +1,4 @@
-<div class="property-panel">
+<div class="property-panel" xmlns="http://www.w3.org/1999/html">
   <div class="selected-element">
     Selected Element {{elementType + ' ' + lastEditedButtonId  }}
   </div>
@@ -29,31 +29,23 @@
             </div>
             <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedColor]"  (change)="changeStyle('color')"></ngx-colors>
           </div>
-          <div class="font-style-content">
-            <div class="dropdown is-active">
-              <div class="dropdown-trigger ">
-                <button class="button dropdown2" aria-haspopup="true" aria-controls="dropdown-menu">
-                  <span>Custom Style</span>
-                  <span class="icon is-small">
-          <i class="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-                </button>
-              </div>
-            </div>
-          </div>
           <div class="text-style-container">
             <div class="input-wrapper">
-              <input class="input is-small" type="text" [value]="fontSize"
+              <input class="input is-small" type="text"  [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.fontSize : '25px'"
                      (change)="changeStyle('fontSize')"
                      [(ngModel)]="fontSize">
               <span class="suffix">px</span>
             </div>
             <div class="input-wrapper">
-              <input class="input is-small" type="text">
+              <input  class="input is-small" type="text"  [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.letterSpacing : '0'"
+                      (change)="changeStyle('letterSpacing')"
+                      [(ngModel)]="letterSpacing">
               <span class="suffix">px</span>
             </div>
             <div class="input-wrapper">
-              <input class="input is-small" type="text">
+              <input class="input is-small" type="text"  [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.lineHeight : null"
+                     (change)="changeStyle('lineHeight')"
+                     [(ngModel)]="lineHeight">
               <span class="suffix">px</span>
             </div>
           </div>
@@ -61,12 +53,13 @@
             <div>
             <p for="button-text-input">Edit Content text</p>
             </div>
-            <input
-              class="input is-primary"
-              type="text"
+            <textarea
+              class="input is-primary textarea"
+              rows="1"
               [(ngModel)]="lastEditedButtonText"
+              [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.text : ''"
               (ngModelChange)="updateButtonText()"
-            />
+            ></textarea>
           </div>
         </div>
       </div>
@@ -103,9 +96,10 @@
               </div>
             </div>
           </div>
+
           <p>Radius</p>
           <input class="input-border-value">
-          <input class="input-border-value" [value]="borderRadius" [(ngModel)]="borderRadius">
+          <input class="input-border-value" [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''" [(ngModel)]="borderRadius">
           <input
             class="slider is-fullwidth"
             step="1"
@@ -113,8 +107,7 @@
             max="200"
             value="50"
             type="range"
-            [value]="borderRadius"
-            (change)="changeStyle('borderRadius')"
+            [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''" (change)="changeStyle('borderRadius')"
             [(ngModel)]="borderRadius"
           >
         </div>
@@ -130,7 +123,6 @@
     </div>
     <div class="effects-panel"  [class.active]="showEffectsPanel">
       <div class="effects-panel-content">
-
         <div class="input-container">
           <p>Opacity</p>
           <input class="input-border-value" [value]="opacityValue" [(ngModel)]="opacityValue">
@@ -145,7 +137,12 @@
             (change)="changeStyle('opacity')"
             [(ngModel)]="opacityValue"
           >
+          <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="isHover" >
+            Turn hover
+          </label>
         </div>
+
       </div>
     </div>
   </div>
@@ -189,6 +186,7 @@
         <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedBackgroundColor]"  (change)="changeStyle('background')"></ngx-colors>
           <input class="input-border-value" [value]="arrayColors[selectedBackgroundColor]" [(ngModel)]="arrayColors[selectedBackgroundColor]">
       </div>
+      <app-file-upload-form></app-file-upload-form>
     </div>
   </div>
 </div>

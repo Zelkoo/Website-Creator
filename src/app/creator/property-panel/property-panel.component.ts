@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -39,7 +39,8 @@ export class PropertyPanelComponent {
   @Input() elementType: string = ''
   @Input() fontSize: string = '0'
   @Input() alignItems: string = 'center'
-
+  @Input() letterSpacing: string = '0'
+  @Input() lineHeight: string = '0'
   arrayColors: Record<string, string> = {
     color1: '#2883e9',
     color2: '#e920e9',
@@ -53,13 +54,14 @@ export class PropertyPanelComponent {
   color: string = "#1976D2";
   opacityValue: string = '100';
   borderRadius: number = 0
-  backgroundColor: any
   left: string = 'bottom-left'
   showEffectsPanel = false;
   showTypographyPanel = false;
   showBorderPanel = false;
   showSizePanel = false;
   showBackgroundPanel = false;
+  isHover: boolean = false
+
   togglePropertyPanel(showPanel: string) {
     if (showPanel === 'typography') {
       this.showTypographyPanel = !this.showTypographyPanel;
@@ -73,6 +75,7 @@ export class PropertyPanelComponent {
       this.showBackgroundPanel = !this.showBackgroundPanel
     }
   }
+
   public updateButtonText() {
     if (this.lastEditedButtonId !== null) {
       const editedButton = this.elements.find((element) => element.id === this.lastEditedButtonId);
@@ -88,10 +91,11 @@ export class PropertyPanelComponent {
       this.selector = editedSelector;
 
       let styleValue = styleValueOverride;
-
       if (!styleValueOverride) {
         styleValue = styleProperty === 'align-items' ? `${this.alignItems}` :
+          styleProperty === 'lineHeight' ? `${this.lineHeight}px` :
           styleProperty === 'opacity' ? `${this.opacityValue}%` :
+            styleProperty === 'letterSpacing' ? `${this.letterSpacing}px` :
           styleProperty === 'fontSize'
             ? `${this.fontSize}px`
             : styleProperty === 'borderRadius'

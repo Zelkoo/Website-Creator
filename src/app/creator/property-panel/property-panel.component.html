@@ -1,16 +1,16 @@
 <div class="property-panel" xmlns="http://www.w3.org/1999/html">
   <div class="selected-element">
-    Selected Element {{elementType + ' ' + lastEditedButtonId  }}
+    Selected Element {{ elementType ? elementType + ' ' + lastEditedButtonId : '' }}
   </div>
   <div class="typography-container">
     <div class="typography-expand">
       <p>Typography</p>
       <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('typography')"></i>
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('TypographyPanel')"></i>
       </div>
     </div>
-    <div class="typography-panel"  [class.active]="showTypographyPanel">
-      <p >Style</p>
+    <div class="typography-panel" [class.active]="panelStates.TypographyPanel">
+      <p>Style</p>
       <div class="typography-panel-content">
         <div class="font-content">
           <p class="font-title">Font</p>
@@ -27,31 +27,29 @@
                 </button>
               </div>
             </div>
-            <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedColor]"  (change)="changeStyle('color')"></ngx-colors>
+            <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedColor]"
+                        (change)="changeStyle('color')"></ngx-colors>
           </div>
           <div class="text-style-container">
             <div class="input-wrapper">
-              <input class="input is-small" type="text"  [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.fontSize : '25px'"
-                     (change)="changeStyle('fontSize')"
-                     [(ngModel)]="fontSize">
+              <input class="input is-small" type="text" [value]="getStyleValue('fontSize')"
+                     (change)="changeStyle('fontSize')" [(ngModel)]="fontSize">
               <span class="suffix">px</span>
             </div>
             <div class="input-wrapper">
-              <input  class="input is-small" type="text"  [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.letterSpacing : '0'"
-                      (change)="changeStyle('letterSpacing')"
-                      [(ngModel)]="letterSpacing">
+              <input class="input is-small" type="text" [value]="getStyleValue('letterSpacing')"
+                     (change)="changeStyle('letterSpacing')" [(ngModel)]="letterSpacing">
               <span class="suffix">px</span>
             </div>
             <div class="input-wrapper">
-              <input class="input is-small" type="text"  [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.lineHeight : null"
-                     (change)="changeStyle('lineHeight')"
-                     [(ngModel)]="lineHeight">
+              <input class="input is-small" type="text" [value]="getStyleValue('lineHeight')"
+                     (change)="changeStyle('lineHeight')" [(ngModel)]="lineHeight">
               <span class="suffix">px</span>
             </div>
           </div>
           <div class="edit-text-container">
             <div>
-            <p for="button-text-input">Edit Content text</p>
+              <p for="button-text-input">Edit Content text</p>
             </div>
             <textarea
               class="input is-primary textarea"
@@ -63,43 +61,37 @@
           </div>
         </div>
       </div>
-      <div class="align-items" >
+      <div class="align-items">
         <p>Text position</p>
-        <div class="icon-position" >
+        <div class="icon-position">
           <label class="alignment-button-left">
-            <button (click)="changeStyle('align-items', 'flex-start')"> <i class="fas fa-align-left"></i></button>
+            <button (click)="changeStyle('align-items', 'flex-start')"><i class="fas fa-align-left"></i></button>
           </label>
           <label class="alignment-button-center">
-            <button (click)="changeStyle('align-items', 'center')"> <i class="fas fa-align-center"></i></button>
+            <button (click)="changeStyle('align-items', 'center')"><i class="fas fa-align-center"></i></button>
           </label>
           <label class="alignment-button-right">
-            <button (click)="changeStyle('align-items', 'flex-end')"> <i class="fas fa-align-right"></i></button>
+            <button (click)="changeStyle('align-items', 'flex-end')"><i class="fas fa-align-right"></i></button>
           </label>
         </div>
       </div>
+    </div>
   </div>
-</div>
   <div class="border-container">
     <div class="border-expand">
       <p>Borders</p>
       <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('border')"></i>
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('BorderPanel')"></i>
       </div>
     </div>
-    <div class="border-panel"  [class.active]="showBorderPanel">
+    <div class="border-panel" [class.active]="panelStates.BorderPanel">
       <div class="border-panel-content">
         <div class="input-container">
-          <div class="border-panel">
-            <div class="border-expand" [class.active]="showBorderPanel">
-              <div class="icon">
-                <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('border')"></i>
-              </div>
-            </div>
-          </div>
-
           <p>Radius</p>
           <input class="input-border-value">
-          <input class="input-border-value" [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''" [(ngModel)]="borderRadius">
+          <input class="input-border-value"
+                 [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''"
+                 [(ngModel)]="borderRadius">
           <input
             class="slider is-fullwidth"
             step="1"
@@ -107,7 +99,8 @@
             max="200"
             value="50"
             type="range"
-            [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''" (change)="changeStyle('borderRadius')"
+            [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''"
+            (change)="changeStyle('borderRadius')"
             [(ngModel)]="borderRadius"
           >
         </div>
@@ -118,10 +111,10 @@
     <div class="effects-expand">
       <p>Effects</p>
       <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('effects')"></i>
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('EffectsPanel')"></i>
       </div>
     </div>
-    <div class="effects-panel"  [class.active]="showEffectsPanel">
+    <div class="effects-panel" [class.active]="panelStates.EffectsPanel">
       <div class="effects-panel-content">
         <div class="input-container">
           <p>Opacity</p>
@@ -137,10 +130,6 @@
             (change)="changeStyle('opacity')"
             [(ngModel)]="opacityValue"
           >
-          <label class="checkbox">
-            <input type="checkbox" [(ngModel)]="isHover" >
-            Turn hover
-          </label>
         </div>
 
       </div>
@@ -150,10 +139,10 @@
     <div class="size-expand">
       <p>Size</p>
       <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('size')"></i>
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('SizePanel')"></i>
       </div>
     </div>
-    <div class="size-panel"  [class.active]="showSizePanel">
+    <div class="size-panel" [class.active]="panelStates.SizePanel">
       <div class="size-panel-content">
         <div class="input-container">
           <p>Width</p>
@@ -177,14 +166,16 @@
     <div class="background-expand">
       <p>Background</p>
       <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('background')"></i>
+        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('BackgroundPanel')"></i>
       </div>
     </div>
-    <div class="background-panel"  [class.active]="showBackgroundPanel">
+    <div class="background-panel" [class.active]="panelStates.BackgroundPanel">
       <div class="background-panel-content">
         <p>Color</p>
-        <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedBackgroundColor]"  (change)="changeStyle('background')"></ngx-colors>
-          <input class="input-border-value" [value]="arrayColors[selectedBackgroundColor]" [(ngModel)]="arrayColors[selectedBackgroundColor]">
+        <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedBackgroundColor]"
+                    (change)="changeStyle('background')"></ngx-colors>
+        <input class="input-border-value" [value]="arrayColors[selectedBackgroundColor]"
+               [(ngModel)]="arrayColors[selectedBackgroundColor]">
       </div>
       <app-file-upload-form></app-file-upload-form>
     </div>

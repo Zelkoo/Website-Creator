@@ -128,7 +128,8 @@ p {
   border-radius: 14px;
   cursor: pointer
 }
-.background-panel-content input ,  .border-panel-content input, .effects-panel-content input, .size-panel-content input{
+
+.background-panel-content input, .border-panel-content input, .effects-panel-content input, .size-panel-content input {
   height: 37px;
   border-radius: 12px;
   border: 0;
@@ -136,6 +137,7 @@ p {
   color: #e9ecef;
   outline: none;
 }
+
 .font-style-content input:focus-visible {
   border: 0;
   outline: 0;
@@ -235,22 +237,27 @@ p {
   position: relative;
   top: 5px
 }
- .background-panel-content {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   height: 50px
- }
+
+.background-panel-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px
+}
+
 .effects-panel-content, .size-panel-content {
   height: 50px;
 }
+
 .background-panel-content .ngx-color-picker {
   position: relative;
   left: 50px;
 }
+
 .textarea {
   max-width: 246px;
   min-width: 246px;
   max-height: 250px;
   min-height: 48px;
 }
+

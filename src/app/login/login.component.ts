@@ -7,16 +7,18 @@ import {AuthLoginService} from "./login.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent{
+export class LoginComponent {
   email!: string;
   password!: string;
   isInValid: boolean = false
-constructor(private router: Router,private authService: AuthLoginService) {
-}
+
+  constructor(private router: Router, private authService: AuthLoginService) {
+  }
 
   async loginUser() {
     await this.authService.loginUser(this.email, this.password, this.isInValid);
   }
+
   public navigateToRegister() {
     this.router.navigate(['/registration'])
   }

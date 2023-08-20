@@ -1,7 +1,7 @@
 import {isDevMode, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {ResizeManipulatorDirective} from "./resize-manipulator.directive";
 import {MoveManipulatorDirective} from "./move-manipulator.directive";
 import {MatSliderModule} from "@angular/material/slider";
@@ -23,21 +23,23 @@ import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {CreatorComponent} from "./creator/creator.component";
-import { PropertyPanelComponent } from './creator/property-panel/property-panel.component';
+import {PropertyPanelComponent} from './creator/property-panel/property-panel.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { WorkspaceComponent } from './creator/workspace/workspace.component';
-import { UploadComponent } from './creator/file-upload/upload.component';
-import { UploadDetailsComponent } from './creator/upload-details/upload-details.component';
-import { UploadListComponent } from './creator/upload-list/upload-list.component';
-import { UploadFormComponent } from './creator/upload-form/upload-form.component';
+import {WorkspaceComponent} from './creator/workspace/workspace.component';
+import {UploadComponent} from './creator/file-upload/upload.component';
+import {UploadDetailsComponent} from './creator/upload-details/upload-details.component';
+import {UploadListComponent} from './creator/upload-list/upload-list.component';
+import {UploadFormComponent} from './creator/upload-form/upload-form.component';
 import {ColorPickerModule} from "ngx-color-picker";
 import {NgxColorsModule} from "ngx-colors";
+
 const routes: Routes = [
-  { path: '', component: LoginComponent},
-  { path: 'edit', component: CreatorComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'registration', component: RegistrationComponent }
+  {path: '', component: LoginComponent},
+  {path: 'edit', component: CreatorComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent}
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,4 +85,5 @@ const routes: Routes = [
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })
-export class AppModule { }
+export class AppModule {
+}

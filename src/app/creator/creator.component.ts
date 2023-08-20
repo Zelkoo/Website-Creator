@@ -1,21 +1,15 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
-  Input,
-  OnInit,
-  QueryList,
+  HostListener,
   Renderer2,
   ViewChild,
-  ViewChildren
 } from "@angular/core";
 import {Store} from "@ngrx/store";
 import {ButtonEditorState} from "../../store/button-editor.state";
 import {InteractHandlerService} from "../services/interact-handler";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
-import interact from "interactjs";
-import {FileUpload} from "./file-upload/file-upload";
 import {FileUploadService} from "./file-upload/file-upload.service";
 
 @Component({
@@ -23,7 +17,7 @@ import {FileUploadService} from "./file-upload/file-upload.service";
   templateUrl: './creator.component.html',
   styleUrls: ['./creator.component.css'],
 })
-export class CreatorComponent implements OnInit, AfterViewInit {
+export class CreatorComponent implements AfterViewInit {
   @ViewChild('.dropzone')
   public isEditMode = true;
   public elements: any[] = [];
@@ -31,22 +25,14 @@ export class CreatorComponent implements OnInit, AfterViewInit {
   public lastEditedButtonId: number | null = null;
   public elementType: string = ''
 
-  constructor(private uploadService: FileUploadService,private store: Store<ButtonEditorState>, private interactHandler: InteractHandlerService, private afAuth: AngularFireAuth, private renderer: Renderer2, private router: Router) {
-  }
-  public onElementClick(): any {
-    if (this.lastEditedButtonId !== null) {
-      console.log(this.elements[this.lastEditedButtonId - 1])
-
-    }
+  constructor(private uploadService: FileUploadService, private store: Store<ButtonEditorState>, private interactHandler: InteractHandlerService, private afAuth: AngularFireAuth, private renderer: Renderer2, private router: Router) {
   }
 
-  public ngOnInit() {
-  }
   public ngAfterViewInit() {
-  this.interactHandler.setupResizableAndDraggable('.draggable', '.dropzone');
-}
+    this.interactHandler.setupResizableAndDraggable('.draggable', '.dropzone');
+  }
 
- onEdit($event: any, buttonId: number | null) {
+  onEdit($event: any, buttonId: number | null): void {
     if ($event?.target) {
       this.elementType = ($event.target as HTMLElement).tagName
 
@@ -72,15 +58,31 @@ export class CreatorComponent implements OnInit, AfterViewInit {
         border: '0',
         borderRadius: '0',
         letterSpacing: '0',
-        lineHeight: null
+        lineHeight: '24px'
       },
       text: 'New Element'
     });
   }
 
 
-
   public onCreateNewButton() {
     this.onEdit(null, null);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  public handleDeleteKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Delete') {
+      this.deleteLastEditedButton();
+    }
+  }
+
+  public deleteLastEditedButton() {
+    if (this.lastEditedButtonId !== null) {
+      const index = this.elements.findIndex(element => element.id === this.lastEditedButtonId);
+      if (index !== -1) {
+        this.elements.splice(index, 1);
+      }
+      this.lastEditedButtonId = null;
+    }
   }
 }

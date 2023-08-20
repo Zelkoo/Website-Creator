@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {panelStates, StyleProperty} from "../../helper/enums";
+import {Selector} from "../../helper/interfaces";
 
 @Component({
   selector: 'app-property-panel',
@@ -30,9 +32,13 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       })),
       transition('open <=> closed', animate('900ms ease-in-out'))
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class PropertyPanelComponent {
+  protected readonly panelStates = panelStates;
+
   @Input() lastEditedButtonId: number | null = null;
   @Input() lastEditedButtonText: string = ''
   @Input() elements: any[] = [];
@@ -41,6 +47,12 @@ export class PropertyPanelComponent {
   @Input() alignItems: string = 'center'
   @Input() letterSpacing: string = '0'
   @Input() lineHeight: string = '0'
+
+  selectedColor: string = 'color1';
+  selectedBackgroundColor: string = 'color2'
+  selector!: Selector
+  opacityValue: string = '100';
+  borderRadius: number = 0
   arrayColors: Record<string, string> = {
     color1: '#2883e9',
     color2: '#e920e9',
@@ -48,69 +60,57 @@ export class PropertyPanelComponent {
     color4: 'rgb(236,64,64)',
     color5: 'rgba(45,208,45,1)'
   };
-  selectedColor: string = 'color1';
-  selectedBackgroundColor: string = 'color2'
-  selector!: any
-  color: string = "#1976D2";
-  opacityValue: string = '100';
-  borderRadius: number = 0
-  left: string = 'bottom-left'
-  showEffectsPanel = false;
-  showTypographyPanel = false;
-  showBorderPanel = false;
-  showSizePanel = false;
-  showBackgroundPanel = false;
-  isHover: boolean = false
 
-  togglePropertyPanel(showPanel: string) {
-    if (showPanel === 'typography') {
-      this.showTypographyPanel = !this.showTypographyPanel;
-    } else if (showPanel === 'border') {
-      this.showBorderPanel = !this.showBorderPanel;
-    } else if (showPanel === 'effects') {
-      this.showEffectsPanel = !this.showEffectsPanel
-    } else if (showPanel === 'size') {
-      this.showSizePanel = !this.showSizePanel
-    } else if (showPanel === 'background') {
-      this.showBackgroundPanel = !this.showBackgroundPanel
+
+  public getStyleValue(property: string): string {
+    if (!this.lastEditedButtonId) {
+      return ''
+    }
+    return this.elements[this.lastEditedButtonId - 1]?.style[property];
+  }
+
+  public togglePropertyPanel(showPanel: string): void {
+    if (panelStates.hasOwnProperty(showPanel)) {
+      panelStates[showPanel] = !panelStates[showPanel];
     }
   }
 
-  public updateButtonText() {
+  public updateButtonText(): void {
     if (this.lastEditedButtonId !== null) {
-      const editedButton = this.elements.find((element) => element.id === this.lastEditedButtonId);
-      if (editedButton) {
-        editedButton.text = this.lastEditedButtonText;
+      this.selector = this.elements.find((element) => element.id === this.lastEditedButtonId);
+      if (this.selector) {
+        this.selector.text = this.lastEditedButtonText;
       }
     }
   }
 
-  public changeStyle(styleProperty: string, styleValueOverride?: string): any {
+  public changeStyle(styleProperty: string, styleValueOverride?: string): void {
     if (this.lastEditedButtonId !== null) {
-      const editedSelector = this.elements.find((element) => element.id === this.lastEditedButtonId);
-      this.selector = editedSelector;
+      this.selector = this.elements.find((element) => element.id === this.lastEditedButtonId);
+      const styleValue = styleValueOverride || this.getStyleValueByProperty(styleProperty);
 
-      let styleValue = styleValueOverride;
-      if (!styleValueOverride) {
-        styleValue = styleProperty === 'align-items' ? `${this.alignItems}` :
-          styleProperty === 'lineHeight' ? `${this.lineHeight}px` :
-          styleProperty === 'opacity' ? `${this.opacityValue}%` :
-            styleProperty === 'letterSpacing' ? `${this.letterSpacing}px` :
-          styleProperty === 'fontSize'
-            ? `${this.fontSize}px`
-            : styleProperty === 'borderRadius'
-              ? `${this.borderRadius}px` :
-                styleProperty === 'background' ?
-              this.arrayColors[this.selectedBackgroundColor]
-              : this.arrayColors[this.selectedColor];
-      }
-
-      if (editedSelector) {
-        editedSelector.style = {
-          ...editedSelector.style,
+      if (this.selector) {
+        this.selector.style = {
+          ...this.selector.style,
           [styleProperty]: styleValue
         };
       }
     }
   }
+
+  private getStyleValueByProperty(styleProperty: string): string {
+    const styleMap: Record<StyleProperty, string> = {
+      [StyleProperty.AlignItems]: `${this.alignItems}`,
+      [StyleProperty.LineHeight]: `${this.lineHeight}px`,
+      [StyleProperty.Opacity]: `${this.opacityValue}%`,
+      [StyleProperty.LetterSpacing]: `${this.letterSpacing}px`,
+      [StyleProperty.FontSize]: `${this.fontSize}px`,
+      [StyleProperty.BorderRadius]: `${this.borderRadius}px`,
+      [StyleProperty.Background]: this.arrayColors[this.selectedBackgroundColor],
+      [StyleProperty.Color]: this.arrayColors[this.selectedColor],
+    };
+
+    return styleMap[styleProperty as StyleProperty];
+  }
+
 }

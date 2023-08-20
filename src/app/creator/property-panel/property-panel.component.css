@@ -7,12 +7,6 @@
   background: #31314a
 }
 
-.edit-text-container {
-  display: flex;
-  flex-direction: column;
-  width: 129px
-}
-
 .element-style p {
   cursor: pointer
 }
@@ -33,10 +27,6 @@ p {
   font-size: 1.1rem
 }
 
-.edit-text-container {
-  width: 100%
-}
-
 .selected-element {
   position: relative;
   top: 15px;
@@ -51,7 +41,7 @@ p {
   font-size: 1.5rem
 }
 
-.border-expand, .effects-expand, .size-expand, .typography-expand, .background-expand {
+.border-expand, .effects-expand, .size-expand, .background-expand {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
@@ -61,30 +51,30 @@ p {
   font-size: 20px
 }
 
-.border-container, .effects-container, .size-container, .typography-container, .background-container {
+.border-container, .effects-container, .size-container, .background-container {
   position: relative;
   top: 25px;
   background-color: #16162c;
 }
 
-.border-expand p, .effects-expand p, .size-expand p, .typography-expand p, .background-expand p {
+.border-expand p, .effects-expand p, .size-expand p, .background-expand p {
   margin-right: auto;
   flex: 1
 }
 
-.border-expand i.fa-solid, .effects-expand i.fa-solid, .size-expand i.fa-solid, .typography-expand i.fa-solid, .background-expand i.fa-solid {
+.border-expand i.fa-solid, .effects-expand i.fa-solid, .size-expand i.fa-solid, .background-expand i.fa-solid {
   margin-right: 5px;
   cursor: pointer
 }
 
-.border-panel, .effects-panel, .size-panel, .typography-panel, .background-panel {
+.border-panel, .effects-panel, .size-panel, .background-panel {
   background-color: #16162c;
   max-height: 0;
   overflow: hidden;
   transition: max-height .9s ease-in-out
 }
 
-.border-panel-content, .effects-panel-content, .size-panel-content, .typography-panel-content, .background-panel-content {
+.border-panel-content, .effects-panel-content, .size-panel-content, .background-panel-content {
   display: flex;
   gap: 12px;
   flex-direction: column;
@@ -92,7 +82,7 @@ p {
   align-items: flex-start
 }
 
-.border-panel.active, .effects-panel.active, .size-panel.active, .typography-panel.active, .background-panel.active {
+.border-panel.active, .effects-panel.active, .size-panel.active, .background-panel.active {
   max-height: 500px
 }
 
@@ -116,18 +106,6 @@ p {
   flex-direction: column
 }
 
-.font-style-content {
-  display: flex;
-  gap: 17px;
-  align-items: center
-}
-
-.font-style-content input {
-  width: 40px;
-  border: 0;
-  border-radius: 14px;
-  cursor: pointer
-}
 
 .background-panel-content input, .border-panel-content input, .effects-panel-content input, .size-panel-content input {
   height: 37px;
@@ -138,40 +116,12 @@ p {
   outline: none;
 }
 
-.font-style-content input:focus-visible {
-  border: 0;
-  outline: 0;
-  box-shadow: none
-}
-
 .container {
   display: flex;
   gap: 15px;
   flex-direction: column;
   top: -40px;
   margin-right: 10px
-}
-
-.font-title {
-  margin-left: 50px
-}
-
-.text-style-container {
-  gap: 18px;
-  display: flex;
-  position: relative;
-  right: 23px
-}
-
-.text-style-container input {
-  width: 70px;
-  height: 37px;
-  border-radius: 12px;
-  border: 0;
-  outline: 0;
-  box-shadow: none;
-  background-color: #2d2d42;
-  color: #e9ecef
 }
 
 .ngx-color-picker {
@@ -182,48 +132,6 @@ p {
 .input-wrapper {
   position: relative;
   display: inline-block
-}
-
-.suffix {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: 0 0;
-  pointer-events: none
-}
-
-.align-items {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around
-}
-
-.icon-position {
-  background: #2d2d42;
-  display: flex;
-  gap: 45px;
-  border-radius: 10px;
-  left: -16px;
-  top: -24px;
-  flex-direction: row;
-  position: relative;
-  width: 248px;
-  justify-content: center
-}
-
-.edit-text-container {
-  left: -22px;
-  position: relative
-}
-
-.align-items p {
-  position: relative;
-  top: -16px
-}
-
-.alignment-button-center button:hover, .alignment-button-left button:hover, .alignment-button-right button:hover {
-  color: #3a3a62
 }
 
 .input-container .input-border-value {
@@ -253,11 +161,3 @@ p {
   position: relative;
   left: 50px;
 }
-
-.textarea {
-  max-width: 246px;
-  min-width: 246px;
-  max-height: 250px;
-  min-height: 48px;
-}
-

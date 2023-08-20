@@ -1,0 +1,75 @@
+<div class="typography-container">
+  <div class="typography-expand">
+    <p>Typography</p>
+    <div class="icon">
+      <i class="fa-solid fa-chevron-down" (click)="openPanel('TypographyPanel')"></i>
+    </div>
+  </div>
+  <div class="typography-panel" [class.active]="panelStates.TypographyPanel">
+    <p>Style</p>
+    <div class="typography-panel-content">
+      <div class="font-content">
+        <p class="font-title">Font</p>
+      </div>
+      <div class="container">
+        <div class="font-style-content">
+          <div class="dropdown is-active">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                <span>Custom Style</span>
+                <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+              </button>
+            </div>
+          </div>
+          <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedColor]"
+                      (change)="styleValueOverride(selector, 'color', arrayColors[selectedColor])"></ngx-colors>
+        </div>
+        <div class="text-style-container">
+          <div class="input-wrapper">
+            <input class="input is-small" type="text" [value]="getFontStyle('fontSize')"
+                   (change)="styleValueOverride(selector,'fontSize', fontSize)" [(ngModel)]="fontSize">
+            <span class="suffix">px</span>
+          </div>
+          <div class="input-wrapper">
+            <input class="input is-small" type="text" [value]="getFontStyle('letterSpacing')"
+                   (change)="styleValueOverride(selector,'letterSpacing', letterSpacing)" [(ngModel)]="letterSpacing">
+            <span class="suffix">px</span>
+          </div>
+          <div class="input-wrapper">
+            <input class="input is-small" type="text" [value]="getFontStyle('lineHeight')"
+                   (change)="styleValueOverride(selector,'lineHeight', lineHeight)" [(ngModel)]="lineHeight">
+            <span class="suffix">px</span>
+          </div>
+        </div>
+        <div class="edit-text-container">
+          <div>
+            <p for="button-text-input">Edit Content text</p>
+          </div>
+          <textarea
+            class="input is-primary textarea"
+            rows="1"
+            [(ngModel)]="elementTextContent"
+            [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.text : ''"
+            (ngModelChange)="changeElementText(selector, elementTextContent)"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="align-items">
+      <p>Text position</p>
+      <div class="icon-position">
+        <label class="alignment-button-left">
+          <button (click)="styleValueOverride(selector,'align-items', 'flex-start')"><i class="fas fa-align-left"></i></button>
+        </label>
+        <label class="alignment-button-center">
+          <button (click)="styleValueOverride(selector,'align-items', 'center')"><i class="fas fa-align-center"></i></button>
+        </label>
+        <label class="alignment-button-right">
+          <button (click)="styleValueOverride(selector,'align-items', 'flex-end')"><i class="fas fa-align-right"></i></button>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

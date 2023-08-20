@@ -32,6 +32,7 @@ import {UploadListComponent} from './creator/upload-list/upload-list.component';
 import {UploadFormComponent} from './creator/upload-form/upload-form.component';
 import {ColorPickerModule} from "ngx-color-picker";
 import {NgxColorsModule} from "ngx-colors";
+import { TypographyPanelComponent } from './creator/property-panel/typography-panel/typography-panel.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -54,6 +55,7 @@ const routes: Routes = [
     UploadDetailsComponent,
     UploadListComponent,
     UploadFormComponent,
+    TypographyPanelComponent,
   ],
   imports: [
     BrowserModule,

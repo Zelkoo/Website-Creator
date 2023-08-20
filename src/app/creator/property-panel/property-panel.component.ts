@@ -61,26 +61,9 @@ export class PropertyPanelComponent {
     color5: 'rgba(45,208,45,1)'
   };
 
-
-  public getStyleValue(property: string): string {
-    if (!this.lastEditedButtonId) {
-      return ''
-    }
-    return this.elements[this.lastEditedButtonId - 1]?.style[property];
-  }
-
   public togglePropertyPanel(showPanel: string): void {
     if (panelStates.hasOwnProperty(showPanel)) {
       panelStates[showPanel] = !panelStates[showPanel];
-    }
-  }
-
-  public updateButtonText(): void {
-    if (this.lastEditedButtonId !== null) {
-      this.selector = this.elements.find((element) => element.id === this.lastEditedButtonId);
-      if (this.selector) {
-        this.selector.text = this.lastEditedButtonText;
-      }
     }
   }
 

@@ -1,109 +1,15 @@
-<div class="property-panel" xmlns="http://www.w3.org/1999/html">
+<div class="property-panel">
   <div class="selected-element">
     Selected Element {{ elementType ? elementType + ' ' + lastEditedButtonId : '' }}
   </div>
-  <app-typography-panel [elements]="elements" [selector]="selector" [lastEditedButtonId]="lastEditedButtonId"></app-typography-panel>
-  <div class="border-container">
-    <div class="border-expand">
-      <p>Borders</p>
-      <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('BorderPanel')"></i>
-      </div>
-    </div>
-    <div class="border-panel" [class.active]="panelStates.BorderPanel">
-      <div class="border-panel-content">
-        <div class="input-container">
-          <p>Radius</p>
-          <input class="input-border-value">
-          <input class="input-border-value"
-                 [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''"
-                 [(ngModel)]="borderRadius">
-          <input
-            class="slider is-fullwidth"
-            step="1"
-            min="0"
-            max="200"
-            value="50"
-            type="range"
-            [value]="lastEditedButtonId !== null ? elements[lastEditedButtonId - 1]?.style?.borderRadius : ''"
-            (change)="changeStyle('borderRadius')"
-            [(ngModel)]="borderRadius"
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="effects-container">
-    <div class="effects-expand">
-      <p>Effects</p>
-      <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('EffectsPanel')"></i>
-      </div>
-    </div>
-    <div class="effects-panel" [class.active]="panelStates.EffectsPanel">
-      <div class="effects-panel-content">
-        <div class="input-container">
-          <p>Opacity</p>
-          <input class="input-border-value" [value]="opacityValue" [(ngModel)]="opacityValue">
-          <input
-            class="slider is-fullwidth"
-            step="1"
-            min="0"
-            max="100"
-            value="100"
-            type="range"
-            [value]="opacityValue"
-            (change)="changeStyle('opacity')"
-            [(ngModel)]="opacityValue"
-          >
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="size-container">
-    <div class="size-expand">
-      <p>Size</p>
-      <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('SizePanel')"></i>
-      </div>
-    </div>
-    <div class="size-panel" [class.active]="panelStates.SizePanel">
-      <div class="size-panel-content">
-        <div class="input-container">
-          <p>Width</p>
-          <input class="input-border-value" [value]="opacityValue" [(ngModel)]="opacityValue">
-          <input
-            class="slider is-fullwidth"
-            step="1"
-            min="0"
-            max="100"
-            value="100"
-            type="range"
-            [value]="opacityValue"
-            (change)="changeStyle('opacity')"
-            [(ngModel)]="opacityValue"
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="background-container">
-    <div class="background-expand">
-      <p>Background</p>
-      <div class="icon">
-        <i class="fa-solid fa-chevron-down" (click)="togglePropertyPanel('BackgroundPanel')"></i>
-      </div>
-    </div>
-    <div class="background-panel" [class.active]="panelStates.BackgroundPanel">
-      <div class="background-panel-content">
-        <p>Color</p>
-        <ngx-colors class="ngx-color-picker" ngx-colors-trigger [(ngModel)]="arrayColors[selectedBackgroundColor]"
-                    (change)="changeStyle('background')"></ngx-colors>
-        <input class="input-border-value" [value]="arrayColors[selectedBackgroundColor]"
-                    [(ngModel)]="arrayColors[selectedBackgroundColor]">
-      </div>
-      <app-file-upload-form></app-file-upload-form>
-    </div>
-  </div>
+  <app-typography-panel [elements]="elements" [selector]="selector"
+                        [lastEditedButtonId]="lastEditedButtonId"></app-typography-panel>
+  <app-border-panel [elements]="elements" [selector]="selector"
+                    [lastEditedButtonId]="lastEditedButtonId"></app-border-panel>
+  <app-effect-panel [elements]="elements" [selector]="selector"
+                    [lastEditedButtonId]="lastEditedButtonId"></app-effect-panel>
+  <app-size-panel [elements]="elements" [selector]="selector"
+                    [lastEditedButtonId]="lastEditedButtonId"></app-size-panel>
+  <app-background-panel [elements]="elements" [selector]="selector"
+                    [lastEditedButtonId]="lastEditedButtonId"></app-background-panel>
 </div>

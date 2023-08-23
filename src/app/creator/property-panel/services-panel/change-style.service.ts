@@ -1,20 +1,20 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Input} from '@angular/core';
 import {panelStates, StyleProperty} from "../../../helper/enums";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChangeStyleService {
-  fontSize: string = '0'
-  alignItems: string = 'center'
-  letterSpacing: string = '0'
-  lineHeight: string = '0'
-  selector: any
-  opacityValue: string = '100'
-  borderRadius: string = '0'
-  selectedColor: string = 'color1';
-  selectedBackgroundColor: string = 'color2'
-  arrayColors: Record<string, string> = {
+  @Input() fontSize: string = '0'
+  @Input() alignItems: string = 'center'
+  @Input() letterSpacing: string = '0'
+  @Input() lineHeight: string = '0'
+  @Input() selector: any
+  @Input() opacityValue: string = '100'
+  @Input() borderRadius: string = '0'
+  @Input() selectedColor: string = 'color1';
+  @Input() selectedBackgroundColor: string = 'color2'
+  @Input() arrayColors: Record<string, string> = {
     color1: '#2883e9',
     color2: '#cc3a3a',
     color3: 'rgb(255,245,0)',
@@ -26,6 +26,13 @@ export class ChangeStyleService {
   constructor() {
   }
 
+
+  public getPropertyValue(element: any, property: string): string | number {
+    if (!element) {
+      return ''
+    }
+    return element.style[property]
+  }
 
   public getStyleValue(element:any, property: string): string {
     if (!element) {

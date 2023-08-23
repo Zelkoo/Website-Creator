@@ -42,7 +42,17 @@ export class TypographyPanelComponent implements OnInit {
 
   public styleValueOverride(element: any, styleProperty: string, styleValueOverride?: string) {
     const selector = this.getSelector();
+    this.styleService.changeStyle(selector, styleProperty, `${styleValueOverride}px`)
+  }
+
+  public changeColor(element: any, styleProperty: string, styleValueOverride?: string) {
+    const selector = this.getSelector();
     this.styleService.changeStyle(selector, styleProperty, styleValueOverride)
+  }
+
+  public getPropertyValue(property: string) {
+    const selector = this.getSelector()
+    return this.styleService.getPropertyValue(selector, property)
   }
 
   public getFontStyle(property: any) {

@@ -33,6 +33,10 @@ import {UploadFormComponent} from './creator/upload-form/upload-form.component';
 import {ColorPickerModule} from "ngx-color-picker";
 import {NgxColorsModule} from "ngx-colors";
 import { TypographyPanelComponent } from './creator/property-panel/typography-panel/typography-panel.component';
+import { BorderPanelComponent } from './creator/property-panel/border-panel/border-panel.component';
+import { EffectPanelComponent } from './creator/property-panel/effect-panel/effect-panel.component';
+import { SizePanelComponent } from './creator/property-panel/size-panel/size-panel.component';
+import { BackgroundPanelComponent } from './creator/property-panel/background-panel/background-panel.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -56,6 +60,10 @@ const routes: Routes = [
     UploadListComponent,
     UploadFormComponent,
     TypographyPanelComponent,
+    BorderPanelComponent,
+    EffectPanelComponent,
+    SizePanelComponent,
+    BackgroundPanelComponent,
   ],
   imports: [
     BrowserModule,

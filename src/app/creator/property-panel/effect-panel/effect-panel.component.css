@@ -1,0 +1,74 @@
+.effects-expand {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  color: #fff;
+  margin-left: 15px;
+  margin-right: 20px;
+  font-size: 20px
+}
+
+.effects-container {
+  position: relative;
+  top: 25px;
+  background-color: #16162c;
+}
+
+.effects-expand p {
+  margin-right: auto;
+  flex: 1
+}
+
+.effects-expand i.fa-solid {
+  margin-right: 5px;
+  cursor: pointer
+}
+
+.effects-panel {
+  background-color: #16162c;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .9s ease-in-out
+}
+
+.effects-panel-content {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start
+}
+
+.effects-panel.active {
+  max-height: 500px
+}
+
+.effects-panel-content input {
+  height: 37px;
+  border-radius: 12px;
+  border: 0;
+  background-color: #2d2d42;
+  color: #e9ecef;
+  outline: none;
+}
+
+.container {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  top: -40px;
+  margin-right: 10px
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+  top: 5px
+}
+
+.effects-panel-content {
+  height: 50px;
+}
+

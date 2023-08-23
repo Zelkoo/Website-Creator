@@ -1,0 +1,31 @@
+<div class="border-container">
+  <div class="border-expand">
+    <p>Borders</p>
+    <div class="icon">
+      <i class="fa-solid fa-chevron-down" (click)="openPanel('BorderPanel')"></i>
+    </div>
+  </div>
+  <div class="border-panel" [class.active]="panelStates.BorderPanel">
+    <div class="border-panel-content">
+      <div class="input-container">
+        <p>Radius</p>
+        <input class="input-border-value"
+               type="text"
+               [value]="getBorderStyle('borderRadius')"
+               (change)="styleValueOverride(selector,'borderRadius', borderRadius)"
+               [(ngModel)]="borderRadius"
+        >
+        <span class="suffix">px</span>
+        <input
+          class="slider is-fullwidth"
+          step="1"
+          min="0"
+          max="200"
+          type="range"
+          (change)="styleValueOverride(selector,'borderRadius', borderRadius)"
+          [(ngModel)]="borderRadius"
+        >
+      </div>
+    </div>
+  </div>
+</div>

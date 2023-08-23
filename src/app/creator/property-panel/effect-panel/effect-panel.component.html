@@ -1,0 +1,31 @@
+<div class="effects-container">
+  <div class="effects-expand">
+    <p>Effects</p>
+    <div class="icon">
+      <i class="fa-solid fa-chevron-down" (click)="openPanel('EffectsPanel')"></i>
+    </div>
+  </div>
+  <div class="effects-panel" [class.active]="panelStates.EffectsPanel">
+    <div class="effects-panel-content">
+      <div class="input-container">
+        <p>Opacity</p>
+        <input class="input-opacity-value"
+               type="text"
+               [value]="getOpacityStyle('opacity')"
+               (change)="styleValueOverride(selector,'opacity', opacityValue)"
+               [(ngModel)]="opacityValue">
+        <input
+          class="slider is-fullwidth"
+          step="1"
+          min="0"
+          max="100"
+          value="100"
+          type="range"
+          (change)="styleValueOverride(selector,'opacity', opacityValue)"
+          [(ngModel)]="opacityValue"
+        >
+      </div>
+
+    </div>
+  </div>
+</div>

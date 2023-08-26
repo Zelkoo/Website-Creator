@@ -1,14 +1,19 @@
 import {Injectable} from '@angular/core';
 import interact from 'interactjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/reducer';
+import { CreateButton, UpdateElementPosition } from '../../store/actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InteractHandlerService {
 
-  constructor() {
+  constructor(private store:  Store<{app: AppState}>) {
   }
-
+  private updateElementPosition(id: number, x: number, y: number) {
+    this.store.dispatch(new UpdateElementPosition({id, x, y}));
+  }
   setupResizableAndDraggable(dragSelector: string, dropSelector: string) {
     interact(dragSelector)
       .resizable({
@@ -46,6 +51,12 @@ export class InteractHandlerService {
             target.style.transform = `translate(${x}px, ${y}px)`;
             target.setAttribute('data-x', x);
             target.setAttribute('data-y', y);
+          },
+          end: (event) => {
+            let x = parseFloat(event.target.getAttribute('data-x') || 0);
+            let y = parseFloat(event.target.getAttribute('data-y') || 0);
+
+            this.updateElementPosition(event.target.id, x, y);
           }
         }
       });

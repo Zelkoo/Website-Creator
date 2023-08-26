@@ -6,7 +6,7 @@ import {ChangeStyleService} from "../services-panel/change-style.service";
   selector: 'app-border-panel',
   templateUrl: './border-panel.component.html',
   styleUrls: ['./border-panel.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class BorderPanelComponent {

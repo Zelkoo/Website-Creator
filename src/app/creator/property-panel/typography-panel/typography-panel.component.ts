@@ -1,12 +1,15 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {panelStates} from "../../../helper/enums";
 import {ChangeStyleService} from "../services-panel/change-style.service";
+import { UpdateFontSize, UpdateTextContent } from '../../../../store/actions';
+import { AppState } from '../../../../store/reducer';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, debounceTime, map } from 'rxjs';
 
 @Component({
   selector: 'app-typography-panel',
   templateUrl: './typography-panel.component.html',
   styleUrls: ['./typography-panel.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TypographyPanelComponent implements OnInit {
   protected readonly panelStates = panelStates;
@@ -25,8 +28,33 @@ export class TypographyPanelComponent implements OnInit {
     color4: 'rgb(236,64,64)',
     color5: 'rgba(45,208,45,1)'
   };
+  elements$ = this.store.select(state => state.app.elements);
 
-  constructor(public styleService: ChangeStyleService) {
+  selectedElement$ = this.store.select(state =>
+    state.app?.elements?.find(e => e.id === state.app?.selectedElementId));
+
+  selectedFontSize$ = this.selectedElement$.pipe(
+    map(element => element?.fontSize)
+  );
+  selectedTextContent$ = this.selectedElement$.pipe(
+    map(element => element?.text)
+  );
+  private textChangeSubject = new BehaviorSubject<string>('');
+
+  constructor(public styleService: ChangeStyleService, private store:  Store<{app: AppState}>) {
+    this.textChangeSubject.pipe(
+      debounceTime(300)
+    ).subscribe(text => {
+      this.store.dispatch(new UpdateTextContent(text));
+    });
+  }
+
+  public changeFontSize(fontSize: number) {
+    this.store.dispatch(new UpdateFontSize(fontSize));
+  }
+
+  public changeTextContent(text: string) {
+    this.textChangeSubject.next(text);
   }
 
   public ngOnInit() {
@@ -40,28 +68,19 @@ export class TypographyPanelComponent implements OnInit {
     this.styleService.togglePropertyPanel(panelToOpen)
   }
 
-  public styleValueOverride(element: any, styleProperty: string, styleValueOverride?: string) {
-    const selector = this.getSelector();
-    this.styleService.changeStyle(selector, styleProperty, `${styleValueOverride}px`)
-  }
-
-  public changeColor(element: any, styleProperty: string, styleValueOverride?: string) {
-    const selector = this.getSelector();
-    this.styleService.changeStyle(selector, styleProperty, styleValueOverride)
-  }
-
-  public getPropertyValue(property: string) {
-    const selector = this.getSelector()
-    return this.styleService.getPropertyValue(selector, property)
-  }
-
-  public getFontStyle(property: any) {
-    const selector = this.getSelector();
-    return this.styleService.getStyleValue(selector, property)
-  }
-
-  public changeElementText(element: any, textContent: string) {
-    const selector = this.getSelector();
-    this.styleService.updateButtonText(selector, textContent)
-  }
+  // public styleValueOverride(element: any, styleProperty: string, styleValueOverride?: string) {
+  //   const selector = this.getSelector();
+  //   this.styleService.changeStyle(selector, styleProperty, `${styleValueOverride}px`)
+  // }
+  //
+  // public changeColor(element: any, styleProperty: string, styleValueOverride?: string) {
+  //   const selector = this.getSelector();
+  //   this.styleService.changeStyle(selector, styleProperty, styleValueOverride)
+  // }
+  //
+  //
+  // public getFontStyle(property: any) {
+  //   const selector = this.getSelector();
+  //   return this.styleService.getStyleValue(selector, property)
+  // }
 }

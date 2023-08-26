@@ -11,10 +11,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {ResizableModule} from "angular-resizable-element";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {StoreModule} from "@ngrx/store";
-import {buttonEditorReducer} from "../store/button-editor.reducer";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {ButtonEditorEffects} from "../store/button-editor.effects";
-import {EffectsModule} from "@ngrx/effects";
 import {MatInputModule} from "@angular/material/input";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
@@ -37,6 +34,7 @@ import { BorderPanelComponent } from './creator/property-panel/border-panel/bord
 import { EffectPanelComponent } from './creator/property-panel/effect-panel/effect-panel.component';
 import { SizePanelComponent } from './creator/property-panel/size-panel/size-panel.component';
 import { BackgroundPanelComponent } from './creator/property-panel/background-panel/background-panel.component';
+import { appReducer } from '../store/reducer';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -79,8 +77,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    StoreModule.forRoot({buttonEditor: buttonEditorReducer}),
-    EffectsModule.forRoot([ButtonEditorEffects]),
+    StoreModule.forRoot({ app: appReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),

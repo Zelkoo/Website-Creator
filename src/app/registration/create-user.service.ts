@@ -6,9 +6,10 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
   providedIn: 'root'
 })
 export class AuthRegisterService {
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+  }
 
-    async addNewUser(email: string, password: string) {
+  async addNewUser(email: string, password: string) {
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
       await this.router.navigate(['/login'])

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import interact from 'interactjs';
 
 @Injectable({
@@ -6,15 +6,16 @@ import interact from 'interactjs';
 })
 export class InteractHandlerService {
 
-  constructor() { }
+  constructor() {
+  }
 
   setupResizableAndDraggable(dragSelector: string, dropSelector: string) {
     interact(dragSelector)
       .resizable({
-        edges: { top: true, left: true, bottom: true, right: true },
+        edges: {top: true, left: true, bottom: true, right: true},
         listeners: {
           move: function (event) {
-            let { x, y } = event.target.dataset;
+            let {x, y} = event.target.dataset;
 
             x = (parseFloat(x) || 0) + event.deltaRect.left;
             y = (parseFloat(y) || 0) + event.deltaRect.top;
@@ -25,12 +26,12 @@ export class InteractHandlerService {
               transform: `translate(${x}px, ${y}px)`
             });
 
-            Object.assign(event.target.dataset, { x, y });
+            Object.assign(event.target.dataset, {x, y});
           }
         },
         modifiers: [
           interact.modifiers.restrictSize({
-            min: { width: 2, height: 50 }
+            min: {width: 2, height: 50}
           })
         ],
         inertia: true
@@ -67,4 +68,5 @@ export class InteractHandlerService {
         event.relatedTarget.classList.add('cannot-drop');
       }
     });
-  }}
+  }
+}

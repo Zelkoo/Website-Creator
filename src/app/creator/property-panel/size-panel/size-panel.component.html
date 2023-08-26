@@ -1,0 +1,29 @@
+<div class="size-container">
+  <div class="size-expand">
+    <p>Size</p>
+    <div class="icon">
+      <i class="fa-solid fa-chevron-down" (click)="openPanel('SizePanel')"></i>
+    </div>
+  </div>
+  <div class="size-panel" [class.active]="panelStates.SizePanel">
+    <div class="size-panel-content">
+      <div class="input-container">
+        <p>Width</p>
+        <input class="input-border-value"
+               [value]="getSizeStyle('opacity')"
+               (change)="styleValueOverride(selector,'opacity', opacityValue)"
+               [(ngModel)]="opacityValue">
+        <input
+          class="slider is-fullwidth"
+          step="1"
+          min="0"
+          max="100"
+          value="100"
+          type="range"
+          (change)="styleValueOverride(selector,'opacity', opacityValue)"
+          [(ngModel)]="getSizeStyle"
+        >
+      </div>
+    </div>
+  </div>
+</div>

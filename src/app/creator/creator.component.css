@@ -33,6 +33,7 @@ button {
   /* This makes things *much* easier */
   box-sizing: border-box;
 }
+
 .manipulator.one {
   position: absolute;
   width: 10px;
@@ -94,12 +95,18 @@ button span {
   position: absolute;
   bottom: 0;
 }
+
+.button.is-danger {
+  position: absolute;
+  bottom: 0;
+  left: 200px;
+}
+
 .on-dropzone {
   height: 100%;
   width: 100%;
   background: #ffa100;
 }
-
 
 .drag1.dragging {
   background-color: green;
@@ -111,9 +118,4 @@ button span {
 
 .drag1.cannot-drop {
   background-color: yellow;
-}
-
-.ben123 {
-  position: relative;
-  top: -249px;
 }

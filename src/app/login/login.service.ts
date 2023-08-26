@@ -6,7 +6,8 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
   providedIn: 'root'
 })
 export class AuthLoginService {
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+  }
 
   async loginUser(email: string, password: string, isInValid: boolean) {
     try {

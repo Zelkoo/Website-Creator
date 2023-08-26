@@ -1,0 +1,69 @@
+.background-expand {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  color: #fff;
+  margin-left: 15px;
+  margin-right: 20px;
+  font-size: 20px
+}
+
+.background-container {
+  position: relative;
+  top: 25px;
+  background-color: #16162c;
+}
+
+.background-expand p {
+  margin-right: auto;
+  flex: 1
+}
+
+.background-expand i.fa-solid {
+  margin-right: 5px;
+  cursor: pointer
+}
+
+.background-panel {
+  background-color: #16162c;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .9s ease-in-out
+}
+
+.background-panel-content {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start
+}
+
+.background-panel.active {
+  max-height: 500px
+}
+
+.background-panel-content input {
+  height: 37px;
+  border-radius: 12px;
+  border: 0;
+  background-color: #2d2d42;
+  color: #e9ecef;
+  outline: none;
+}
+
+.ngx-color-picker {
+  left: -23px;
+  position: relative
+}
+.background-panel-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px
+}
+
+.background-panel-content .ngx-color-picker {
+  position: relative;
+  left: 50px;
+}

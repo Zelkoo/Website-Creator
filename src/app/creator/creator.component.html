@@ -1,6 +1,5 @@
 <div class="button-wrapper" *ngFor="let element of elements; let i = index" (click)="onEdit($event, element.id)">
   <button
-    (click)="onElementClick()"
     [attr.id]="'button-' + element.id"
     class="button is-warning resizable-draggable on-dropzone drag1 draggable resizable"
     [ngClass]="{'res': isEditMode}"
@@ -17,11 +16,12 @@
 </div>
 
 <button class="button is-success" (click)="onCreateNewButton()">Create new element</button>
+<button class="button is-danger" (click)="deleteLastEditedButton()">Delete element</button>
 
-<div class="my-3">
-  <app-file-upload-form></app-file-upload-form>
-</div>
+<!--<div class="my-3">-->
+<!--  <app-file-upload-form></app-file-upload-form>-->
+<!--</div>-->
 
-<div class="my-2">
-  <app-file-upload-list></app-file-upload-list>
-</div>
+<!--<div class="my-2">-->
+<!--  <app-file-upload-list></app-file-upload-list>-->
+<!--</div>-->

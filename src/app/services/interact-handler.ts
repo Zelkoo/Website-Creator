@@ -12,7 +12,10 @@ export class InteractHandlerService {
   constructor(private store:  Store<{app: AppState}>) {
   }
   private updateElementPosition(id: number, x: number, y: number) {
+    console.log(x,y)
     this.store.dispatch(new UpdateElementPosition({id, x, y}));
+    console.log(x,y)
+
   }
   setupResizableAndDraggable(dragSelector: string, dropSelector: string) {
     interact(dragSelector)
@@ -61,23 +64,23 @@ export class InteractHandlerService {
         }
       });
 
-    interact(dropSelector).dropzone({
-      accept: '.draggable',
-      overlap: 0.75,
-      ondropactivate: (event) => {
-        event.relatedTarget.classList.add('dragging');
-      },
-      ondropdeactivate: (event) => {
-        event.relatedTarget.classList.remove('dragging', 'cannot-drop');
-      },
-      ondragenter: (event) => {
-        event.relatedTarget.classList.remove('cannot-drop');
-        event.relatedTarget.classList.add('can-drop');
-      },
-      ondragleave: (event) => {
-        event.relatedTarget.classList.remove('can-drop');
-        event.relatedTarget.classList.add('cannot-drop');
-      }
-    });
+    // interact(dropSelector).dropzone({
+    //   accept: '.draggable',
+    //   overlap: 0.75,
+    //   ondropactivate: (event) => {
+    //     event.relatedTarget.classList.add('dragging');
+    //   },
+    //   ondropdeactivate: (event) => {
+    //     event.relatedTarget.classList.remove('dragging', 'cannot-drop');
+    //   },
+    //   ondragenter: (event) => {
+    //     event.relatedTarget.classList.remove('cannot-drop');
+    //     event.relatedTarget.classList.add('can-drop');
+    //   },
+    //   ondragleave: (event) => {
+    //     event.relatedTarget.classList.remove('can-drop');
+    //     event.relatedTarget.classList.add('cannot-drop');
+    //   }
+    // });
   }
 }

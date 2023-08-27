@@ -2,8 +2,11 @@
   <button
     class="button is-warning resizable-draggable drag1 draggable resizable"
     [style.fontSize.px]="element.fontSize"
+    [style.color]='element.color'
     [style.width.px]="element.width"
     [style.height.px]="element.height"
+    [style.letter-spacing]='element.letterSpacing'
+    [style.line-height]='element.lineHeight'
     [style.transform]="'translate(' + element?.x + 'px,' + element?.y + 'px)'"
   >{{ element.text  }}</button>
 </div>

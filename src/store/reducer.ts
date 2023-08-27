@@ -1,7 +1,7 @@
 import {ActionTypes} from "./actions";
 
 export interface AppState {
-  elements: Array<{ id: number, text: string, fontSize: string, width: string, height: string, x: any, y: any }>;
+  elements: Array<{ id: number, text: string, fontSize: string, width: string, height: string, x: any, y: any, color: string, letterSpacing: string, lineHeight: string }>;
   selectedElementId: number | null;
 }
 
@@ -19,6 +19,8 @@ export function appReducer(state = initialState, action: any): AppState {
         fontSize: '15px',
         width: '140',
         height: '200',
+        letterSpacing: '0px',
+        color: 'red',
         x: '500',
         y: '500'
       };
@@ -52,6 +54,36 @@ export function appReducer(state = initialState, action: any): AppState {
         elements: state.elements.map(element => {
           if (element.id === state.selectedElementId) {
             return { ...element, fontSize: action.payload };
+          }
+          return element;
+        })
+      }
+    case ActionTypes.UPDATE_LINE_HEIGHT:
+      return {
+        ...state,
+        elements: state.elements.map(element => {
+          if (element.id === state.selectedElementId) {
+            return { ...element, lineHeight: action.payload };
+          }
+          return element;
+        })
+      }
+    case ActionTypes.UPDATE_LETTER_SPACING:
+      return {
+        ...state,
+        elements: state.elements.map(element => {
+          if (element.id === state.selectedElementId) {
+            return { ...element, letterSpacing: action.payload };
+          }
+          return element;
+        })
+      }
+    case ActionTypes.UPDATE_FONT_COLOR:
+      return {
+        ...state,
+        elements: state.elements.map(element => {
+          if (element.id === state.selectedElementId) {
+            return { ...element, color: action.payload };
           }
           return element;
         })

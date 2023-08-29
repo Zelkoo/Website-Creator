@@ -42,5 +42,6 @@ export class PropertyPanelComponent {
   @Input() elementType: string = ''
   @Input() alignItems: string = 'center'
   selector!: Selector
-
+  constructor() {
+  }
 }

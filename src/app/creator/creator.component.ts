@@ -18,6 +18,7 @@ import { map } from 'rxjs';
   selector: 'creator',
   templateUrl: './creator.component.html',
   styleUrls: ['./creator.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreatorComponent implements AfterViewInit {
   @ViewChild('.dropzone')
@@ -30,6 +31,7 @@ export class CreatorComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
+
     this.interactHandler.setupResizableAndDraggable('.draggable', '.dropzone');
   }
   public createButton() {
@@ -40,7 +42,19 @@ export class CreatorComponent implements AfterViewInit {
   selectButton(id: number) {
     this.store.dispatch(new SelectElement({ id }));
   }
-
+  public getStyles(element: any): {[key: string]: string} {
+    return {
+      'transform': `translate(${element.x}px, ${element.y}px)`,
+      'fontSize': `${element.fontSize}px`,
+      'color': element.color,
+      'width': `${element.width}px`,
+      'height': `${element.height}px`,
+      'letterSpacing': `${element.letterSpacing}px`,
+      'lineHeight': `${element.lineHeight}px`,
+      'alignItems': element.alignItems,
+      'backgroundColor': element.backgroundColor
+    };
+  }
   @HostListener('document:keydown', ['$event'])
   public handleDeleteKeyboardEvent(event: KeyboardEvent) {
     if (event.key === 'Delete') {

@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {FileUpload} from "./file-upload";
 import {FileUploadService} from "./file-upload.service";
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
+  styleUrls: ['./upload.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class UploadComponent {
   selectedFiles?: FileList;

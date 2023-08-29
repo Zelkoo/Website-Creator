@@ -6,7 +6,10 @@ export enum ActionTypes {
   UPDATE_ELEMENT_POSITION = '[App] Update Element Position',
   UPDATE_FONT_COLOR = '[App] Update Font Color',
   UPDATE_LETTER_SPACING = '[App] Update Letter Spacing',
-  UPDATE_LINE_HEIGHT = '[App] Update Line Height'
+  UPDATE_LINE_HEIGHT = '[App] Update Line Height',
+  UPDATE_ALIGN_ITEMS = '[App] Update Align Items',
+  UPDATE_ELEMENT_SIZE = '[App] Update Element Size',
+  UPDATE_BACKGROUND_COLOR = '[App] Update Background Color'
 }
 
 export class CreateButton {
@@ -33,6 +36,11 @@ export class UpdateFontColor {
 
   constructor(public payload: string) { }
 }
+export class UpdateBgColor {
+  readonly type = ActionTypes.UPDATE_BACKGROUND_COLOR;
+
+  constructor(public payload: string) { }
+}
 export class UpdateLetterSpacing {
   readonly type = ActionTypes.UPDATE_LETTER_SPACING;
   constructor(public payload: number) { }
@@ -44,5 +52,16 @@ export class UpdateLineHeight {
 export class UpdateElementPosition {
   readonly type = ActionTypes.UPDATE_ELEMENT_POSITION
   constructor(public payload: {id: number, x: number, y: number}) {
+  }
+}
+export class UpdateElementSize {
+  readonly type = ActionTypes.UPDATE_ELEMENT_SIZE
+  constructor(public payload: {id: number, width: number, height: number}) {
+  }
+}
+export class UpdateAlignItems {
+  readonly type = ActionTypes.UPDATE_ALIGN_ITEMS
+
+  constructor(public payload: string) {
   }
 }

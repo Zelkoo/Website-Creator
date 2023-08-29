@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {FileUploadService} from "../file-upload/file-upload.service";
 import {map} from "rxjs";
 
 @Component({
   selector: 'app-file-upload-list',
   templateUrl: './upload-list.component.html',
-  styleUrls: ['./upload-list.component.css']
+  styleUrls: ['./upload-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class UploadListComponent implements OnInit{
   fileUploads?: any[];

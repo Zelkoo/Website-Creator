@@ -10,15 +10,13 @@
       <p>Color</p>
       <ngx-colors class="ngx-color-picker"
                   ngx-colors-trigger
-                  [(ngModel)]="arrayColors[selectedBackgroundColor]"
-                  (change)="styleValueOverride(selector,'background', arrayColors[selectedBackgroundColor])"
+                  [ngModel]="selectedBgColor$ | async"
+                  (ngModelChange)="changeBgColor($event)"
       >
       </ngx-colors>
       <input class="input-border-value"
-             [value]="arrayColors[selectedBackgroundColor]"
-             [(ngModel)]="arrayColors[selectedBackgroundColor]"
-
-             (change)="getBackgroundStyle('background')"
+             [ngModel]="selectedBgColor$ | async"
+             (ngModelChange)="changeBgColor($event)"
       >
 
     </div>

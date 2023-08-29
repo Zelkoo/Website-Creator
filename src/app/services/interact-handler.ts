@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import interact from 'interactjs';
 import { Store } from '@ngrx/store';
+import { UpdateElementPosition, UpdateElementSize } from '../../store/actions';
 import { AppState } from '../../store/reducer';
-import { CreateButton, UpdateElementPosition } from '../../store/actions';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,10 @@ export class InteractHandlerService {
   constructor(private store:  Store<{app: AppState}>) {
   }
   private updateElementPosition(id: number, x: number, y: number) {
-    console.log(x,y)
     this.store.dispatch(new UpdateElementPosition({id, x, y}));
-    console.log(x,y)
-
+  }
+  private updateElementSize(id: number, width: number, height: number) {
+    this.store.dispatch(new UpdateElementSize({id, width, height}));
   }
   setupResizableAndDraggable(dragSelector: string, dropSelector: string) {
     interact(dragSelector)
@@ -35,6 +35,13 @@ export class InteractHandlerService {
             });
 
             Object.assign(event.target.dataset, {x, y});
+          },
+          end: (event) => {
+            let width = parseFloat(event.rect.width || 0);
+            let height = parseFloat(event.rect.height || 0);
+
+            this.updateElementSize(event.target.id, width, height);
+
           }
         },
         modifiers: [
@@ -54,33 +61,15 @@ export class InteractHandlerService {
             target.style.transform = `translate(${x}px, ${y}px)`;
             target.setAttribute('data-x', x);
             target.setAttribute('data-y', y);
+
           },
           end: (event) => {
             let x = parseFloat(event.target.getAttribute('data-x') || 0);
             let y = parseFloat(event.target.getAttribute('data-y') || 0);
 
-            this.updateElementPosition(event.target.id, x, y);
+            this.updateElementPosition(Number(event.target.id), x, y);
           }
         }
       });
-
-    // interact(dropSelector).dropzone({
-    //   accept: '.draggable',
-    //   overlap: 0.75,
-    //   ondropactivate: (event) => {
-    //     event.relatedTarget.classList.add('dragging');
-    //   },
-    //   ondropdeactivate: (event) => {
-    //     event.relatedTarget.classList.remove('dragging', 'cannot-drop');
-    //   },
-    //   ondragenter: (event) => {
-    //     event.relatedTarget.classList.remove('cannot-drop');
-    //     event.relatedTarget.classList.add('can-drop');
-    //   },
-    //   ondragleave: (event) => {
-    //     event.relatedTarget.classList.remove('can-drop');
-    //     event.relatedTarget.classList.add('cannot-drop');
-    //   }
-    // });
   }
 }

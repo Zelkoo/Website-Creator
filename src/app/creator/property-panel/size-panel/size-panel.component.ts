@@ -1,11 +1,13 @@
-import {Component, Input} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {panelStates} from "../../../helper/enums";
 import {ChangeStyleService} from "../services-panel/change-style.service";
 
 @Component({
   selector: 'app-size-panel',
   templateUrl: './size-panel.component.html',
-  styleUrls: ['./size-panel.component.css']
+  styleUrls: ['./size-panel.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class SizePanelComponent {
   @Input() lastEditedButtonId: number | null = null;

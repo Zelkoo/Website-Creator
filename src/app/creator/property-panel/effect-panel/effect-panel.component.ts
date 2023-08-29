@@ -6,7 +6,7 @@ import {ChangeStyleService} from "../services-panel/change-style.service";
   selector: 'app-effect-panel',
   templateUrl: './effect-panel.component.html',
   styleUrls: ['./effect-panel.component.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class EffectPanelComponent {

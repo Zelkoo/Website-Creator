@@ -2,8 +2,6 @@ import {isDevMode, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {ResizeManipulatorDirective} from "./resize-manipulator.directive";
-import {MoveManipulatorDirective} from "./move-manipulator.directive";
 import {MatSliderModule} from "@angular/material/slider";
 import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
@@ -46,8 +44,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ResizeManipulatorDirective,
-    MoveManipulatorDirective,
     LoginComponent,
     CreatorComponent,
     RegistrationComponent,

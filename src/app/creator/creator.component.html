@@ -1,22 +1,17 @@
 <div *ngFor="let element of elements$ | async" (click)="selectButton(element.id)">
   <button
     class="button is-warning resizable-draggable drag1 draggable resizable"
-    [style.fontSize.px]="element.fontSize"
-    [style.color]='element.color'
-    [style.width.px]="element.width"
-    [style.height.px]="element.height"
-    [style.letter-spacing]='element.letterSpacing'
-    [style.line-height]='element.lineHeight'
-    [style.transform]="'translate(' + element?.x + 'px,' + element?.y + 'px)'"
+    [id]='element.id'
+    [attr.data-x]="element.x"
+    [attr.data-y]="element.y"
+    [ngStyle]="getStyles(element)"
   >{{ element.text  }}</button>
-</div>
 
+</div>
 <div class="container-workspace-property-panel">
-  <app-property-panel
-    [lastEditedButtonId]="lastEditedButtonId"
-    [elements]="elements" [elementType]="elementType"></app-property-panel>
+  <app-property-panel></app-property-panel>
   <app-workspace></app-workspace>
 </div>
 
 <button class="button is-success" (click)="createButton()">Create new element</button>
-<button class="button is-danger" (click)="deleteLastEditedButton()">Delete element</button>
+<!--<button class="button is-danger" (click)="deleteLastEditedButton()">Delete element</button>-->

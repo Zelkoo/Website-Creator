@@ -1,8 +1,21 @@
 import {ActionTypes} from "./actions";
 
 export interface AppState {
-  elements: Array<{ id: number, text: string, fontSize: string, width: string, height: string, x: any, y: any, color: string, letterSpacing: string, lineHeight: string }>;
-  selectedElementId: number | null;
+  elements: Array<{
+    id: number,
+    text: string,
+    fontSize: string,
+    backgroundColor: string,
+    width: string,
+    height: string,
+    x: number,
+    y: number,
+    color: string,
+    letterSpacing: string,
+    lineHeight: string,
+    alignItems: string
+  }>;
+    selectedElementId: number | null;
 }
 
 export const initialState: AppState = {
@@ -16,13 +29,16 @@ export function appReducer(state = initialState, action: any): AppState {
       const newElement = {
         id: state.elements.length + 1,
         text: 'Element Content',
-        fontSize: '15px',
+        fontSize: '15',
         width: '140',
-        height: '200',
-        letterSpacing: '0px',
-        color: 'red',
+        height: '100',
+        letterSpacing: '0',
+        backgroundColor: 'black',
         x: '500',
-        y: '500'
+        y: '500',
+        color: 'red',
+        alignItems: 'flex-start',
+        // display: 'flex',
       };
       return <AppState>{ ...state, elements: [...state.elements, newElement] };
     case ActionTypes.SELECT_ELEMENT:
@@ -31,8 +47,18 @@ export function appReducer(state = initialState, action: any): AppState {
       return {
         ...state,
         elements: state.elements.map(element => {
-          if (element.id === state.selectedElementId) {
+          if (element.id === action.payload.id) {
             return {...element, x: action.payload.x, y: action.payload.y}
+          }
+          return element
+        })
+      }
+    case ActionTypes.UPDATE_ELEMENT_SIZE:
+      return {
+        ...state,
+        elements: state.elements.map(element => {
+          if (element.id === state.selectedElementId) {
+            return {...element, width: action.payload.width, height: action.payload.height}
           }
           return element
         })
@@ -42,7 +68,6 @@ export function appReducer(state = initialState, action: any): AppState {
         ...state,
         elements: state.elements.map(element => {
           if (element.id === state.selectedElementId) {
-            console.log(state)
             return { ...element, text: action.payload };
           }
           return element;
@@ -54,6 +79,16 @@ export function appReducer(state = initialState, action: any): AppState {
         elements: state.elements.map(element => {
           if (element.id === state.selectedElementId) {
             return { ...element, fontSize: action.payload };
+          }
+          return element;
+        })
+      }
+    case ActionTypes.UPDATE_ALIGN_ITEMS:
+      return {
+        ...state,
+        elements: state.elements.map(element => {
+          if (element.id === state.selectedElementId) {
+            return { ...element, alignItems: action.payload };
           }
           return element;
         })
@@ -84,6 +119,16 @@ export function appReducer(state = initialState, action: any): AppState {
         elements: state.elements.map(element => {
           if (element.id === state.selectedElementId) {
             return { ...element, color: action.payload };
+          }
+          return element;
+        })
+      }
+    case ActionTypes.UPDATE_BACKGROUND_COLOR:
+      return {
+        ...state,
+        elements: state.elements.map(element => {
+          if (element.id === state.selectedElementId) {
+            return { ...element, backgroundColor: action.payload };
           }
           return element;
         })

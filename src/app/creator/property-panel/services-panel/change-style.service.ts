@@ -28,6 +28,7 @@ export class ChangeStyleService {
 
 
   public getPropertyValue(element: any, property: string): string | number {
+    console.log(1)
     if (!element) {
       return ''
     }

@@ -1,21 +1,24 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {panelStates} from "../../../helper/enums";
 import {ChangeStyleService} from "../services-panel/change-style.service";
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, debounceTime, map } from 'rxjs';
 import {
-  UpdateFontColor,
+  UpdateAlignItems, UpdateFontColor,
   UpdateFontSize,
   UpdateLetterSpacing,
   UpdateLineHeight,
   UpdateTextContent,
 } from '../../../../store/actions';
 import { AppState } from '../../../../store/reducer';
-import { Store } from '@ngrx/store';
-import { BehaviorSubject, debounceTime, map } from 'rxjs';
 
 @Component({
   selector: 'app-typography-panel',
   templateUrl: './typography-panel.component.html',
   styleUrls: ['./typography-panel.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
+
 })
 export class TypographyPanelComponent implements OnInit {
   protected readonly panelStates = panelStates;
@@ -41,6 +44,7 @@ export class TypographyPanelComponent implements OnInit {
   selectedLineHeight$ = this.selectedElement$.pipe(
     map(element => element?.lineHeight)
   )
+
   private textChangeSubject = new BehaviorSubject<string>('');
 
   constructor(public styleService: ChangeStyleService, private store:  Store<{app: AppState}>) {
@@ -50,7 +54,9 @@ export class TypographyPanelComponent implements OnInit {
       this.store.dispatch(new UpdateTextContent(text));
     });
   }
-
+  public changeAlignItems(value: string) {
+    this.store.dispatch(new UpdateAlignItems(value));
+  }
   public changeFontSize(fontSize: number) {
     this.store.dispatch(new UpdateFontSize(fontSize));
   }

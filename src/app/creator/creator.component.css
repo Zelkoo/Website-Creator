@@ -46,41 +46,6 @@ button {
   cursor: nwse-resize;
 }
 
-.manipulator.two {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #000;
-  top: -5px;
-  right: -5px;
-  border-radius: 50%;
-
-  cursor: nesw-resize;
-}
-
-.manipulator.three {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #000;
-  bottom: -5px;
-  right: -5px;
-  border-radius: 50%;
-
-  cursor: nwse-resize;
-}
-
-.manipulator.four {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #000;
-  border-radius: 50%;
-  bottom: -5px;
-  left: -5px;
-  cursor: nesw-resize;
-}
-
 .fontsize {
   position: relative;
   top: 42px;
@@ -96,26 +61,8 @@ button span {
   bottom: 0;
 }
 
-.button.is-danger {
-  position: absolute;
-  bottom: 0;
-  left: 200px;
-}
-
 .on-dropzone {
   height: 100%;
   width: 100%;
   background: #ffa100;
-}
-
-.drag1.dragging {
-  background-color: green;
-}
-
-.drag1.can-drop {
-  background-color: #ffa100;
-}
-
-.drag1.cannot-drop {
-  background-color: yellow;
 }

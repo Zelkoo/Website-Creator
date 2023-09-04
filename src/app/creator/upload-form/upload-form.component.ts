@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {FileUpload} from "../file-upload/file-upload";
 import {FileUploadService} from "../file-upload/file-upload.service";
 
 @Component({
   selector: 'app-file-upload-form',
   templateUrl: './upload-form.component.html',
-  styleUrls: ['./upload-form.component.css']
+  styleUrls: ['./upload-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class UploadFormComponent implements OnInit {
   selectedFiles?: FileList;

@@ -24,30 +24,24 @@
             </div>
           </div>
           <ngx-colors class="ngx-color-picker" ngx-colors-trigger
-                      [(ngModel)]="arrayColors[selectedColor]"
-                      (change)="changeColor(selector, 'color', arrayColors[selectedColor])
-"></ngx-colors>
+                      [ngModel]="selectedFontColor$ | async"
+                      (ngModelChange)="changeFontColor($event)"
+></ngx-colors>
         </div>
         <div class="text-style-container">
           <div class="input-wrapper">
             <input class="input is-small" type="text"
-                   [value]="getFontStyle('fontSize')"
-                   (change)="styleValueOverride(selector,'fontSize', fontSize)"
-                   [(ngModel)]="fontSize">
+                   [ngModel]="selectedFontSize$ | async" (ngModelChange)="changeFontSize($event)">
             <span class="suffix">px</span>
           </div>
           <div class="input-wrapper">
             <input class="input is-small" type="text"
-                   [value]="getFontStyle('letterSpacing')"
-                   (change)="styleValueOverride(selector,'letterSpacing', letterSpacing)"
-                   [(ngModel)]="letterSpacing">
+                   [ngModel]="selectedLetterSpacing$ | async" (ngModelChange)="changeLetterSpacing($event)">
             <span class="suffix">px</span>
           </div>
           <div class="input-wrapper">
             <input class="input is-small" type="text"
-                   [value]="getFontStyle('lineHeight')"
-                   (change)="styleValueOverride(selector,'lineHeight', lineHeight)"
-                   [(ngModel)]="lineHeight">
+                   [ngModel]="selectedLineHeight$ | async" (ngModelChange)="changeLineHeight($event)">
             <span class="suffix">px</span>
           </div>
         </div>
@@ -58,9 +52,7 @@
           <textarea
             class="input is-primary textarea"
             rows="1"
-            [(ngModel)]="elementTextContent"
-            [value]="getPropertyValue('text')"
-            (ngModelChange)="changeElementText(selector, elementTextContent)"
+            [ngModel]="selectedTextContent$ | async" (ngModelChange)="changeTextContent($event)"
           ></textarea>
         </div>
       </div>
@@ -69,13 +61,13 @@
       <p>Text position</p>
       <div class="icon-position">
         <label class="alignment-button-left">
-          <button (click)="styleValueOverride(selector,'align-items', 'flex-start')"><i class="fas fa-align-left"></i></button>
+          <button (click)="changeAlignItems('flex-start')"><i class="fas fa-align-left"></i></button>
         </label>
         <label class="alignment-button-center">
-          <button (click)="styleValueOverride(selector,'align-items', 'center')"><i class="fas fa-align-center"></i></button>
+          <button (click)="changeAlignItems('center')"><i class="fas fa-align-center"></i></button>
         </label>
         <label class="alignment-button-right">
-          <button (click)="styleValueOverride(selector,'align-items', 'flex-end')"><i class="fas fa-align-right"></i></button>
+          <button (click)="changeAlignItems('flex-end')"><i class="fas fa-align-right"></i></button>
         </label>
       </div>
     </div>

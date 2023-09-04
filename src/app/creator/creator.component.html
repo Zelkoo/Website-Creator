@@ -1,27 +1,17 @@
-<div class="button-wrapper" *ngFor="let element of elements; let i = index" (click)="onEdit($event, element.id)">
+<div *ngFor="let element of elements$ | async" (click)="selectButton(element.id)">
   <button
-    [attr.id]="'button-' + element.id"
-    class="button is-warning resizable-draggable on-dropzone drag1 draggable resizable"
-    [ngClass]="{'res': isEditMode}"
-    [ngStyle]="element.style"
-  >
-    {{ element.text  }}
-  </button>
+    class="button is-warning resizable-draggable drag1 draggable resizable"
+    [id]='element.id'
+    [attr.data-x]="element.x"
+    [attr.data-y]="element.y"
+    [ngStyle]="getStyles(element)"
+  >{{ element.text  }}</button>
+
 </div>
+
 <div class="container-workspace-property-panel">
-  <app-property-panel
-    [lastEditedButtonId]="lastEditedButtonId"
-    [elements]="elements" [elementType]="elementType"></app-property-panel>
-  <app-workspace></app-workspace>
+  <app-property-panel></app-property-panel>
+  <app-workspace class="workspace-area"></app-workspace>
 </div>
 
-<button class="button is-success" (click)="onCreateNewButton()">Create new element</button>
-<button class="button is-danger" (click)="deleteLastEditedButton()">Delete element</button>
-
-<!--<div class="my-3">-->
-<!--  <app-file-upload-form></app-file-upload-form>-->
-<!--</div>-->
-
-<!--<div class="my-2">-->
-<!--  <app-file-upload-list></app-file-upload-list>-->
-<!--</div>-->
+<button class="button is-success" (click)="createButton()">Create new element</button>

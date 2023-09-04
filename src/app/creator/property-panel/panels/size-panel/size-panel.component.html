@@ -10,9 +10,9 @@
       <div class="input-container">
         <p>Width</p>
         <input class="input-border-value"
-               [value]="getSizeStyle('opacity')"
-               (change)="styleValueOverride(selector,'opacity', opacityValue)"
-               [(ngModel)]="opacityValue">
+               [ngModel]="selectedBorderRadius$ | async"
+               (ngModelChange)="changeBorderRadius($event)"
+        >
         <input
           class="slider is-fullwidth"
           step="1"
@@ -20,8 +20,8 @@
           max="100"
           value="100"
           type="range"
-          (change)="styleValueOverride(selector,'opacity', opacityValue)"
-          [(ngModel)]="getSizeStyle"
+          [ngModel]="selectedBorderRadius$ | async"
+          (ngModelChange)="changeBorderRadius($event)"
         >
       </div>
     </div>

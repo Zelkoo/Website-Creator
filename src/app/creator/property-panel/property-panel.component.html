@@ -1,15 +1,7 @@
 <div class="property-panel">
-  <div class="selected-element">
-    Selected Element {{ elementType ? elementType + ' ' + lastEditedButtonId : '' }}
-  </div>
-  <app-typography-panel [elements]="elements" [selector]="selector"
-                        [lastEditedButtonId]="lastEditedButtonId"></app-typography-panel>
-  <app-border-panel [elements]="elements" [selector]="selector"
-                    [lastEditedButtonId]="lastEditedButtonId"></app-border-panel>
-  <app-effect-panel [elements]="elements" [selector]="selector"
-                    [lastEditedButtonId]="lastEditedButtonId"></app-effect-panel>
-  <app-size-panel [elements]="elements" [selector]="selector"
-                    [lastEditedButtonId]="lastEditedButtonId"></app-size-panel>
-  <app-background-panel [elements]="elements" [selector]="selector"
-                    [lastEditedButtonId]="lastEditedButtonId"></app-background-panel>
+  <app-typography-panel></app-typography-panel>
+  <app-background-panel></app-background-panel>
+  <app-border-panel></app-border-panel>
+  <app-effect-panel></app-effect-panel>
+  <app-size-panel></app-size-panel>
 </div>

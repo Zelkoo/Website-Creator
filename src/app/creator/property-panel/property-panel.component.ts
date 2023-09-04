@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {Selector} from "../../helper/interfaces";
 
 @Component({
   selector: 'app-property-panel',
@@ -36,12 +35,6 @@ import {Selector} from "../../helper/interfaces";
 
 })
 export class PropertyPanelComponent {
-
-  @Input() lastEditedButtonId: number | null = null;
-  @Input() elements: any[] = [];
-  @Input() elementType: string = ''
-  @Input() alignItems: string = 'center'
-  selector!: Selector
   constructor() {
   }
 }

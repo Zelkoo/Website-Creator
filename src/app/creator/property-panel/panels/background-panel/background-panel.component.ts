@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import {panelStates} from "../../../helper/enums";
-import {ChangeStyleService} from "../services-panel/change-style.service";
-import { UpdateBgColor, UpdateFontColor } from '../../../../store/actions';
+import {panelStates} from "../../../../helper/enums";
+import {ChangeStyleService} from "../../services-panel/change-style.service";
+import {  UpdateStyleProperty } from '../../../../../store/actions';
 import { map } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../store/reducer';
+import { AppState } from '../../../../../store/reducer';
+import { ElementProperties } from '../../../../helper/types';
 
 @Component({
   selector: 'app-background-panel',
@@ -18,9 +19,15 @@ export class BackgroundPanelComponent {
   selectedElement$ = this.store.select(state =>
     state.app?.elements?.find(e => e.id === state.app?.selectedElementId));
 
-  selectedBgColor$ = this.selectedElement$.pipe(
-    map(element => element?.backgroundColor)
-  )
+  selectedBgColor$ = this.selectProperty('backgroundColor');
+
+  private selectProperty<T>(key: keyof ElementProperties) {
+    return this.selectedElement$.pipe(map(element => element && element[key]));
+  }
+  private updateStyleProperty(property: string, value: any) {
+    this.store.dispatch(new UpdateStyleProperty({ property, value }));
+  }
+
   constructor(public styleService: ChangeStyleService, private store:  Store<{app: AppState}>) {
   }
 
@@ -28,6 +35,6 @@ export class BackgroundPanelComponent {
     this.styleService.togglePropertyPanel(panelToOpen)
   }
   public changeBgColor(bgColor: string) {
-    this.store.dispatch(new UpdateBgColor(bgColor))
+    this.updateStyleProperty('backgroundColor', bgColor );
   }
 }

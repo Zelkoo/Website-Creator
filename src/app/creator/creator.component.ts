@@ -21,22 +21,17 @@ import { map } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreatorComponent implements AfterViewInit {
-  @ViewChild('.dropzone')
-  public isEditMode = true;
-  public elements: any[] = [];
-  public lastEditedButtonId: number | null = null;
-  public elementType: string = ''
-
-  constructor(private uploadService: FileUploadService, private store:  Store<{app: AppState}>, private interactHandler: InteractHandlerService, private afAuth: AngularFireAuth, private renderer: Renderer2, private router: Router) {
+  constructor(private uploadService: FileUploadService, private store:  Store<{app: AppState}>, private interactHandler: InteractHandlerService, private afAuth: AngularFireAuth) {
   }
 
   public ngAfterViewInit() {
-
-    this.interactHandler.setupResizableAndDraggable('.draggable', '.dropzone');
+    this.interactHandler.setupResizableAndDraggable('.draggable');
   }
   public createButton() {
     this.store.dispatch(new CreateButton());
   }
+
+
   elements$ = this.store.select(state => state.app.elements);
 
   selectButton(id: number) {
@@ -52,22 +47,9 @@ export class CreatorComponent implements AfterViewInit {
       'letterSpacing': `${element.letterSpacing}px`,
       'lineHeight': `${element.lineHeight}px`,
       'alignItems': element.alignItems,
-      'backgroundColor': element.backgroundColor
+      'backgroundColor': element.backgroundColor,
+      'borderRadius': `${element.borderRadius}px`,
+      'opacity': `${element.opacity}%`
     };
-  }
-  @HostListener('document:keydown', ['$event'])
-  public handleDeleteKeyboardEvent(event: KeyboardEvent) {
-    if (event.key === 'Delete') {
-      this.deleteLastEditedButton();
-    }
-  }
-  public deleteLastEditedButton() {
-    if (this.lastEditedButtonId !== null) {
-      const index = this.elements.findIndex(element => element.id === this.lastEditedButtonId);
-      if (index !== -1) {
-        this.elements.splice(index, 1);
-      }
-      this.lastEditedButtonId = null;
-    }
   }
 }

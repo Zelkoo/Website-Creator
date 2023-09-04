@@ -11,9 +11,8 @@
         <p>Radius</p>
         <input class="input-border-value"
                type="text"
-               [value]="getBorderStyle('borderRadius')"
-               (change)="styleValueOverride(selector,'borderRadius', borderRadius)"
-               [(ngModel)]="borderRadius"
+               [ngModel]="selectedBorderRadius$ | async"
+               (ngModelChange)="changeBorderRadius($event)"
         >
         <span class="suffix">px</span>
         <input
@@ -22,9 +21,8 @@
           min="0"
           max="200"
           type="range"
-          (change)="styleValueOverride(selector,'borderRadius', borderRadius)"
-          [(ngModel)]="borderRadius"
-        >
+          [ngModel]="selectedBorderRadius$ | async"
+          (ngModelChange)="changeBorderRadius($event)">
       </div>
     </div>
   </div>

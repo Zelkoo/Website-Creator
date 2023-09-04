@@ -8,5 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 })
 export class WorkspaceComponent {
+  constructor() {
+  }
 
 }

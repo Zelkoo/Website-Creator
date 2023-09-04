@@ -1,15 +1,11 @@
 export enum ActionTypes {
-  CREATE_ELEMENT = '[App] Create Button',
-  SELECT_ELEMENT = '[App] Select Button',
-  UPDATE_FONT_SIZE = '[App] Update Font Size',
-  CHANGE_TEXT_CONTENT = '[App] Update Text Content',
-  UPDATE_ELEMENT_POSITION = '[App] Update Element Position',
-  UPDATE_FONT_COLOR = '[App] Update Font Color',
-  UPDATE_LETTER_SPACING = '[App] Update Letter Spacing',
-  UPDATE_LINE_HEIGHT = '[App] Update Line Height',
-  UPDATE_ALIGN_ITEMS = '[App] Update Align Items',
-  UPDATE_ELEMENT_SIZE = '[App] Update Element Size',
-  UPDATE_BACKGROUND_COLOR = '[App] Update Background Color'
+  CREATE_ELEMENT = '[Element] Create Button',
+  SELECT_ELEMENT = '[Element] Select Button',
+  CHANGE_TEXT_CONTENT = '[Element] Update Text Content',
+  UPDATE_ELEMENT_POSITION = '[Element] Update Element Position',
+  UPDATE_ELEMENT_SIZE = '[Element] Update Element Size',
+  UPDATE_BACKGROUND_COLOR = '[Element] Update Background Color',
+  UPDATE_STYLE_PROPERTY = '[Element] Update Style Property'
 }
 
 export class CreateButton {
@@ -21,34 +17,17 @@ export class SelectElement {
   constructor(public payload: { id: number }) { }
 }
 
-export class UpdateFontSize {
-  readonly type = ActionTypes.UPDATE_FONT_SIZE;
-
-  constructor(public payload: number) { }
+export class UpdateStyleProperty {
+  readonly type = ActionTypes.UPDATE_STYLE_PROPERTY;
+  constructor(public payload: { property: string | number, value: any }) {}
 }
+
 export class UpdateTextContent {
   readonly type = ActionTypes.CHANGE_TEXT_CONTENT;
 
   constructor(public payload: string) { }
 }
-export class UpdateFontColor {
-  readonly type = ActionTypes.UPDATE_FONT_COLOR;
 
-  constructor(public payload: string) { }
-}
-export class UpdateBgColor {
-  readonly type = ActionTypes.UPDATE_BACKGROUND_COLOR;
-
-  constructor(public payload: string) { }
-}
-export class UpdateLetterSpacing {
-  readonly type = ActionTypes.UPDATE_LETTER_SPACING;
-  constructor(public payload: number) { }
-}
-export class UpdateLineHeight {
-  readonly type = ActionTypes.UPDATE_LINE_HEIGHT;
-  constructor(public payload: number) { }
-}
 export class UpdateElementPosition {
   readonly type = ActionTypes.UPDATE_ELEMENT_POSITION
   constructor(public payload: {id: number, x: number, y: number}) {
@@ -58,10 +37,5 @@ export class UpdateElementSize {
   readonly type = ActionTypes.UPDATE_ELEMENT_SIZE
   constructor(public payload: {id: number, width: number, height: number}) {
   }
-}
-export class UpdateAlignItems {
-  readonly type = ActionTypes.UPDATE_ALIGN_ITEMS
 
-  constructor(public payload: string) {
-  }
 }

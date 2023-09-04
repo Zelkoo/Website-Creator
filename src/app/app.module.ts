@@ -27,12 +27,14 @@ import {UploadListComponent} from './creator/upload-list/upload-list.component';
 import {UploadFormComponent} from './creator/upload-form/upload-form.component';
 import {ColorPickerModule} from "ngx-color-picker";
 import {NgxColorsModule} from "ngx-colors";
-import { TypographyPanelComponent } from './creator/property-panel/typography-panel/typography-panel.component';
-import { BorderPanelComponent } from './creator/property-panel/border-panel/border-panel.component';
-import { EffectPanelComponent } from './creator/property-panel/effect-panel/effect-panel.component';
-import { SizePanelComponent } from './creator/property-panel/size-panel/size-panel.component';
-import { BackgroundPanelComponent } from './creator/property-panel/background-panel/background-panel.component';
+import { TypographyPanelComponent } from './creator/property-panel/panels/typography-panel/typography-panel.component';
+import { BorderPanelComponent } from './creator/property-panel/panels/border-panel/border-panel.component';
+import { EffectPanelComponent } from './creator/property-panel/panels/effect-panel/effect-panel.component';
+import { SizePanelComponent } from './creator/property-panel/panels/size-panel/size-panel.component';
+import { BackgroundPanelComponent } from './creator/property-panel/panels/background-panel/background-panel.component';
 import { appReducer } from '../store/reducer';
+import { MyEffects } from '../store/effects';
+import { EffectsModule } from '@ngrx/effects';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -74,6 +76,7 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     StoreModule.forRoot({ app: appReducer }),
+    EffectsModule.forRoot([MyEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),

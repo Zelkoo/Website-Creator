@@ -17,7 +17,7 @@ export class InteractHandlerService {
   private updateElementSize(id: number, width: number, height: number) {
     this.store.dispatch(new UpdateElementSize({id, width, height}));
   }
-  setupResizableAndDraggable(dragSelector: string, dropSelector: string) {
+  setupResizableAndDraggable(dragSelector: string) {
     interact(dragSelector)
       .resizable({
         edges: {top: true, left: true, bottom: true, right: true},

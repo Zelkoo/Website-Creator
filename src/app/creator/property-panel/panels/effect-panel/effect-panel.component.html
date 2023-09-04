@@ -11,9 +11,9 @@
         <p>Opacity</p>
         <input class="input-opacity-value"
                type="text"
-               [value]="getOpacityStyle('opacity')"
-               (change)="styleValueOverride(selector,'opacity', opacityValue)"
-               [(ngModel)]="opacityValue">
+               [ngModel]="selectedOpacity$ | async"
+               (ngModelChange)="changeOpacity($event)"
+        >
         <input
           class="slider is-fullwidth"
           step="1"
@@ -21,8 +21,8 @@
           max="100"
           value="100"
           type="range"
-          (change)="styleValueOverride(selector,'opacity', opacityValue)"
-          [(ngModel)]="opacityValue"
+          [ngModel]="selectedOpacity$ | async"
+          (ngModelChange)="changeOpacity($event)"
         >
       </div>
 

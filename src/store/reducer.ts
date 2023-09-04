@@ -14,6 +14,8 @@ export interface AppState {
     letterSpacing: string,
     lineHeight: string,
     alignItems: string
+    borderRadius: string,
+    opacity: string
   }>;
     selectedElementId: number | null;
 }
@@ -38,9 +40,14 @@ export function appReducer(state = initialState, action: any): AppState {
         y: '500',
         color: 'red',
         alignItems: 'flex-start',
-        // display: 'flex',
+        borderRadius: '0',
+        opacity: '100'
       };
-      return <AppState>{ ...state, elements: [...state.elements, newElement] };
+      return <AppState>
+        {
+          ...state,
+          elements: [...state.elements, newElement],
+        };
     case ActionTypes.SELECT_ELEMENT:
       return { ...state, selectedElementId: action.payload.id };
     case ActionTypes.UPDATE_ELEMENT_POSITION:
@@ -73,56 +80,6 @@ export function appReducer(state = initialState, action: any): AppState {
           return element;
         })
       }
-    case ActionTypes.UPDATE_FONT_SIZE:
-      return {
-        ...state,
-        elements: state.elements.map(element => {
-          if (element.id === state.selectedElementId) {
-            return { ...element, fontSize: action.payload };
-          }
-          return element;
-        })
-      }
-    case ActionTypes.UPDATE_ALIGN_ITEMS:
-      return {
-        ...state,
-        elements: state.elements.map(element => {
-          if (element.id === state.selectedElementId) {
-            return { ...element, alignItems: action.payload };
-          }
-          return element;
-        })
-      }
-    case ActionTypes.UPDATE_LINE_HEIGHT:
-      return {
-        ...state,
-        elements: state.elements.map(element => {
-          if (element.id === state.selectedElementId) {
-            return { ...element, lineHeight: action.payload };
-          }
-          return element;
-        })
-      }
-    case ActionTypes.UPDATE_LETTER_SPACING:
-      return {
-        ...state,
-        elements: state.elements.map(element => {
-          if (element.id === state.selectedElementId) {
-            return { ...element, letterSpacing: action.payload };
-          }
-          return element;
-        })
-      }
-    case ActionTypes.UPDATE_FONT_COLOR:
-      return {
-        ...state,
-        elements: state.elements.map(element => {
-          if (element.id === state.selectedElementId) {
-            return { ...element, color: action.payload };
-          }
-          return element;
-        })
-      }
     case ActionTypes.UPDATE_BACKGROUND_COLOR:
       return {
         ...state,
@@ -133,6 +90,16 @@ export function appReducer(state = initialState, action: any): AppState {
           return element;
         })
       };
+    case ActionTypes.UPDATE_STYLE_PROPERTY:
+      return {
+        ...state,
+        elements: state.elements.map(element => {
+          if (element.id === state.selectedElementId) {
+            return { ...element, [action.payload.property]: action.payload.value };
+          }
+          return element;
+        })
+      }
     default:
       return state;
   }
